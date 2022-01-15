@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import NavBar from '../NavBar/NavBar';
-import { getUser, getAllUsers } from '../../services/mcpApiService';
+import { getUser, getAllUsers } from '../../services/userApiService';
 
 const Profile = () => {
 

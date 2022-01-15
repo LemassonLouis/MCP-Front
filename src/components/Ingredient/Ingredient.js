@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import NavBar from '../NavBar/NavBar';
-import { getAllIngredients} from '../../services/mcpApiService';
+import { getAllIngredients} from '../../services/ingredientApiService';
 import IngredientList from './IngredientList';
 
 const Ingredient = () => {

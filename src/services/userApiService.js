@@ -47,24 +47,3 @@ export function getAllUsers(){
 }
 
 
-export function getAllIngredients(){
-    console.log('getAllIngredients');
-    console.log(mcpApiEndpoint + 'ingredients');
-    return new Promise(
-        function(resolve, reject){
-            axios.get(mcpApiEndpoint + 'ingredients',
-            {
-                headers:{
-                    'Accept' : 'application/json'
-                },
-            }).then(function(res){
-                console.log('getAllIngredients', res)
-                return resolve(res)
-            })
-            .catch(function(err){
-                console.log('getAllIngredients', err)
-                return reject(err)
-            })
-        }
-    )
-}
