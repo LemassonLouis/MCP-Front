@@ -8,11 +8,13 @@ const Ingredient = () => {
 
     const [ingredients, setIngredients] = useState([]);
 
+    /**
+     * Recovery of ingredients data 
+     */
     useEffect(() => {
         getAllIngredients().then((res) => {
             if(res.status === 200){
                 setIngredients(res.data);
-                console.log(ingredients);
             }
         }).catch((err) => {
             console.log(err);

@@ -2,92 +2,105 @@ import React from 'react';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import { postIngredient } from '../../services/ingredientApiService';
+import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
+import TextField from '@mui/material/TextField';
+
 
 const AddIngredient = () => {
 
     const navigate = useNavigate();
-    const [name, setName] = useState();
-    const [price, setPrice] = useState();
-    const [unit, setUnit] = useState();
-    const [vege, setVege] = useState();
-    const [allergen, setAllergen] = useState();
-    const [archive, setArchive] = useState();
+    const [inputs, setInputs] = useState({});
+    
 
-    const linkedInputName = e => {
-        setName(e)
-    }
-    const linkedInputPrice = e => {
-        setPrice(e)
-    }
-    const linkedInputUnit = e => {
-        setUnit(e)
-    }
-    const linkedInputVege = e => {
-        console.log(e);
-        setVege(e)
-    }
-    const linkedInputAllergen = e => {
-        setAllergen(e)
-    }
-    const linkedInputArchive = e => {
-        setArchive(e)
+    const dateRangerPicker = (data) => {
+        setInputs(values => ({...values, 'season' : data}))
     }
 
+    /**
+     * Recovery of data entered by the user in the inputs
+     */
+    const handleChange = (e) => {
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        setInputs(values => ({...values, [name]: value}));
+    }
 
-    const sendAddIngredient = (e) => {
+    /**
+     * Creation of an ingredient object to send to the back
+     */
+    const sendIngredient = (e) => {
         e.preventDefault();
         let ingredient = {
-            name,
-            price: parseInt(price),
-            unit,
-            vege: Boolean(vege),
-            allergen: Boolean(allergen),
-            archive: Boolean(archive)
+            name : inputs.name,
+            price: parseInt(inputs.price),
+            unit : inputs.unit,
+            vege: Boolean(inputs.vege),
+            allergen: Boolean(inputs.allergen),
+            archive: Boolean(inputs.archive),
+            season : inputs.season
         }
+        console.log(ingredient);
         postIngredient(ingredient).then(
             (res) => res.status === 201 && navigate('/ingredient')
         ).catch((err) => console.log(err))
     }
 
     return (
-        <form onSubmit={e => sendAddIngredient(e)}>
-                <label>
-                    Nom : 
-                    <input type="text" 
-                    name='name' 
-                    onInput={e => linkedInputName(e.target.value)} 
-                    />
-                </label>
+        <>
+            <button onClick={() => navigate(-1)}>Retour</button>
+            <br />
+            <br />
+            <form onSubmit={e => sendIngredient(e)}>
+                <TextField 
+                    required
+                    id="outlined-basic" 
+                    label="Nom" 
+                    variant="outlined" 
+                    type="text" 
+                    name="name" 
+                    onInput={handleChange}  />
                 <br/>
-                <label>
-                    Prix : 
-                    <input type="number" name='price' 
-                    onInput={e => linkedInputPrice(e.target.value)} />
-                </label>
-                <label>
-                    Unité :
-                    <input type="text" name='unit' 
-                    onInput={e => linkedInputUnit(e.target.value)} />
-                </label>
+                <TextField 
+                    id="outlined-basic" 
+                    label="Prix" 
+                    variant="outlined" 
+                    type="number" 
+                    name="price" 
+                    onInput={handleChange}  />
+                <TextField 
+                    id="outlined-basic" 
+                    label="Unité" 
+                    variant="outlined" 
+                    type="text" 
+                    name="unit" 
+                    onInput={handleChange}  />
+                <br />
                 <br />
                 <label>
                     Végétarien :
-                    <input type="checkbox" name='unit' 
-                    onInput={e => linkedInputVege(e.target.checked)} />
+                    <input type="checkbox" name='vege' 
+                    onInput={handleChange} />
                 </label>
                 <label>
                     Allergène :
-                    <input type="checkbox" name='unit' 
-                    onInput={e => linkedInputAllergen(e.target.checked)} />
+                    <input type="checkbox" name='allergen' 
+                    onInput={handleChange} />
                 </label>
                 <label>
                     Archive : 
-                    <input type="checkbox" name='unit' 
-                    onInput={e => linkedInputArchive(e.target.checked)} />
+                    <input type="checkbox" name='archive' 
+                    onInput={handleChange} />
                 </label>
                 <br />
+                <br />
+                <BasicDateRangePicker func={dateRangerPicker}/>
+                <br />
+                <br />
                 <button>Envoyer</button>
-        </form>
+            </form>
+            
+        </>
     );
 };
 

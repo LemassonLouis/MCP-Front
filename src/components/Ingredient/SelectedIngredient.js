@@ -5,6 +5,10 @@ import { removeIngredient } from '../../services/ingredientApiService';
 const SelectedIngredient = () => {
 
     const navigate = useNavigate();
+
+    /**
+     * Retrieving data from the state sent by ingredientList with state={i}
+     */
     const location = useLocation();
     const locationState = location.state;
     console.log(locationState);

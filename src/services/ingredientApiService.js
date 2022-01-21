@@ -37,7 +37,8 @@ export function postIngredient(ingredient){
                 "iNGVege": ingredient.vege,
                 "iNGUnit": ingredient.unit,
                 "iNGPrice": ingredient.price,
-                "iNGIsArchive": ingredient.archive
+                "iNGIsArchive": ingredient.archive,
+                // "seasons": ingredient.season
             }
             axios.post(mcpApiEndpoint + 'ingredients', data ,
             {

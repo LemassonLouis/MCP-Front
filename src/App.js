@@ -7,9 +7,12 @@ import Ingredient from "./components/Ingredient/Ingredient";
 import Technique from "./components/Technique/Technique";
 import SelectedIngredient from "./components/Ingredient/SelectedIngredient";
 import AddIngredient from "./components/Ingredient/AddIngredient";
+import DateFnsAdapter from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (
+    <LocalizationProvider dateAdapter={DateFnsAdapter}>
     <div className="App">
       <Routes>
         <Route path="*" element={<NotFound/>}/>
@@ -21,6 +24,7 @@ function App() {
         <Route path="/technique" element={<Technique/>}/>
       </Routes>
     </div>
+    </LocalizationProvider>
   );
 }
 

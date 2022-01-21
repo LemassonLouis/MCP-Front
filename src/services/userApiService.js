@@ -4,10 +4,10 @@ const mcpApiEndpoint = 'http://localhost:8080/api/'
 
 export function getUser(){
     console.log('getUser');
-    console.log(mcpApiEndpoint + 'users/12');
+    console.log(mcpApiEndpoint + 'users/17');
     return new Promise(
         function(resolve, reject){
-            axios.get(mcpApiEndpoint + 'users/12',
+            axios.get(mcpApiEndpoint + 'users/17',
             {
                 headers:{
                     'Accept' : 'application/json'

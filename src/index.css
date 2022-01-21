@@ -11,11 +11,12 @@ body {
 }
 
 nav {
-  margin: 10px 0;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
+  background-color: white;
+  padding: 30px 0;
 }
 
 nav a {
@@ -25,7 +26,15 @@ nav a {
   color: #303030;
 }
 
+
 .activeLink{
   color: #f7a154;
   text-decoration: underline;
+}
+
+/**TEST**/
+
+a:link{
+  color: black;
+  text-decoration: none;
 }

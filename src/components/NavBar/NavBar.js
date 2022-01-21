@@ -7,30 +7,22 @@ const NavBar = () => {
         <nav>
             <NavLink 
             to="/"
-            className={({isActive}) => {
-                return isActive ? "activeLink" : ""
-            }}
+            className={({isActive}) => isActive ? "activeLink" : ""}
             >Recette
             </NavLink>
             <NavLink 
             to="/ingredient"
-            className={({isActive}) => {
-                return isActive ? "activeLink" : ""
-            }}
+            className={({isActive}) => isActive ? "activeLink" : ""}
             >Ingredient
             </NavLink>
             <NavLink 
             to="/technique"
-            className={({isActive}) => {
-                return isActive ? "activeLink" : ""
-            }}
+            className={({isActive}) => isActive ? "activeLink" : ""}
             >Technique
             </NavLink>
             <NavLink 
             to="/profile/:id"
-            className={({isActive}) => {
-                return isActive ? "activeLink" : ""
-            }}
+            className={({isActive}) => isActive ? "activeLink" : ""}
             >Profil
             </NavLink>
             
