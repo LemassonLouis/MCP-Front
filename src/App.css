@@ -14,6 +14,17 @@
   margin-bottom: 50px;
 }
 
+.filter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.onSort{
+  margin-right: 3rem;
+  cursor: pointer;
+}
+
 .MuiCardMedia-root{
   object-fit: contain !important;
 }

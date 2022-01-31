@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const mcpApiEndpoint = 'http://localhost:8080/api/'
+const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
 
 export function getAllIngredients(){
     console.log('getAllIngredients');

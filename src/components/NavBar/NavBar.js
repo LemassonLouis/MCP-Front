@@ -21,6 +21,9 @@ const NavBar = () => {
             >Technique
             </NavLink>
             <NavLink 
+            /**
+             * Pass the id of the connected user
+             */
             to="/profile/:id"
             className={({isActive}) => isActive ? "activeLink" : ""}
             >Profil
