@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import { postIngredient } from '../../services/ingredientApiService';
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 const AddIngredient = () => {
@@ -48,7 +49,7 @@ const AddIngredient = () => {
 
     return (
         <>
-            <button onClick={() => navigate(-1)}>Retour</button>
+            <Button  color="warning" variant="contained" onClick={() => navigate(-1)}>Retour</Button>
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
@@ -61,6 +62,7 @@ const AddIngredient = () => {
                     name="name" 
                     onInput={handleChange}  />
                 <br/>
+                <br />
                 <TextField 
                     id="outlined-basic" 
                     label="Prix" 
@@ -97,7 +99,7 @@ const AddIngredient = () => {
                 <BasicDateRangePicker func={dateRangerPicker}/>
                 <br />
                 <br />
-                <button>Envoyer</button>
+                <Button color="warning" variant="contained">Envoyer</Button>
             </form>
             
         </>

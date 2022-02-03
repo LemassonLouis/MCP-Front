@@ -24,6 +24,8 @@ const Ingredient = () => {
     return (
         <div>
             <h1>Liste des ingrédients</h1>
+            <br />
+            <br />
             <IngredientList ingredients={ingredients}/>
             <NavBar/>
         </div>
