@@ -9,13 +9,18 @@ import SelectedIngredient from "./components/Ingredient/SelectedIngredient";
 import AddIngredient from "./components/Ingredient/AddIngredient";
 import DateFnsAdapter from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import Login from "./components/Login/Login";
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "./Theme/Colors"
 
 function App() {
   return (
     <LocalizationProvider dateAdapter={DateFnsAdapter}>
+    <ThemeProvider theme={theme}>
     <div className="App">
       <Routes>
         <Route path="*" element={<NotFound/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/" element={<Home/>}/>
         <Route path="/profile/:id" element={<Profile/>}/>
         <Route path="/ingredient" element={<Ingredient/>}/>
@@ -24,6 +29,7 @@ function App() {
         <Route path="/technique" element={<Technique/>}/>
       </Routes>
     </div>
+    </ThemeProvider>
     </LocalizationProvider>
   );
 }

@@ -5,10 +5,12 @@ import { postIngredient } from '../../services/ingredientApiService';
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import PrimaryButton from '../../Theme/PrimaryButton';
 
 
 const AddIngredient = () => {
 
+    const classes = PrimaryButton()
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
     
@@ -49,7 +51,7 @@ const AddIngredient = () => {
 
     return (
         <>
-            <Button  color="warning" variant="contained" onClick={() => navigate(-1)}>Retour</Button>
+            <Button color="warning" variant="contained" onClick={() => navigate(-1)}>Retour</Button>
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
@@ -99,7 +101,7 @@ const AddIngredient = () => {
                 <BasicDateRangePicker func={dateRangerPicker}/>
                 <br />
                 <br />
-                <Button color="warning" variant="contained">Envoyer</Button>
+                <button type="submit"  variant="contained" className={classes.root}>Envoyer</button>
             </form>
             
         </>
