@@ -1,56 +1,36 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import { useState} from 'react';
+import {Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
+import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
-import Button  from '@mui/material/Button';
-// import {orderBy} from "lodash";
+import {getAllIngredients} from '../../services/ingredientApiService';
 
-const IngredientList = ({ingredients}) => {
+const IngredientList = ({searchTerm}) => {
 
-    // const [ingredient, setIngredient] = useState(ingredients);
-    const [searchTerm, setSearchTerm] = useState('');
-    // const [sort, setSort] = useState({key: 'ING_name', sort: 'asc'});
     
     const navigate = useNavigate();
 
-    /** 
-     * In progress !!!!
-     * Function that returns the ingredients array as an array filtered by ascending and descending name
-     */
-    // const onSort = () => {
-    //     sort.sort=(sort.sort=='asc'?'desc':'asc');
-    //     setIngredient(orderBy(ingredients, item => item[sort.key].toLowerCase(), [sort.sort]));
-    // }
+    const [ingredientsState, setIngredientsState] = useState([]);
+
+    useEffect(() => {
+        getAllIngredients().then((res) => {
+            if (res.status === 200) {
+                setIngredientsState(res.data);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }, []);
+
 
     return (
         <>  
-            <Button variant="contained" onClick={() => navigate("/ingredient/add")} >Ajouter</Button>
-            <br/>
-            <br />
-            <div className='filter'>
-                {/* <p className="onSort" onClick={() => onSort()}>Nom</p> */}
-                <TextField 
-                    id="outlined-basic" 
-                    label="Recherche" 
-                    variant="outlined" 
-                    type="text" 
-                    name="search" 
-                    size='small'
-                    onChange={((e) => {setSearchTerm(e.target.value)})}
-                    />
-            </div>
-            <br/>
             <div className='card'>
             {
 
                 /*******Search function************/
 
-                ingredients.filter((i) => {
+                ingredientsState.filter((i) => {
                     if(searchTerm == ''){
                         return i
                     }else if(i.ING_name.toLowerCase().includes(searchTerm.toLowerCase())){

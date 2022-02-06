@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import { removeIngredient } from '../../services/ingredientApiService';
 import Button  from '@mui/material/Button';
-import { useState} from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 const SelectedIngredient = () => {
