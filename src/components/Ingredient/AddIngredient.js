@@ -5,15 +5,14 @@ import { postIngredient } from '../../services/ingredientApiService';
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import PrimaryButton from '../../Theme/PrimaryButton';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 
 const AddIngredient = () => {
 
-    const classes = PrimaryButton()
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
-    
+    const [load, setLoad] = useState(false);
 
     const dateRangerPicker = (data) => {
         setInputs(values => ({...values, 'season' : data}))
@@ -34,6 +33,7 @@ const AddIngredient = () => {
      */
     const sendIngredient = (e) => {
         e.preventDefault();
+        setLoad(true);
         let ingredient = {
             name : inputs.name,
             price: parseInt(inputs.price),
@@ -47,11 +47,12 @@ const AddIngredient = () => {
         postIngredient(ingredient).then(
             (res) => res.status === 201 && navigate('/ingredient')
         ).catch((err) => console.log(err))
-    }
 
+    }
+    
     return (
         <>
-            <Button color="warning" variant="contained" onClick={() => navigate(-1)}>Retour</Button>
+            <Button variant="outlined" onClick={()=>navigate(-1)}>Retour</Button>
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
@@ -73,7 +74,7 @@ const AddIngredient = () => {
                     name="price" 
                     onInput={handleChange}  />
                 <TextField 
-                    id="outlined-basic" 
+                    id="outline-basic" 
                     label="Unité" 
                     variant="outlined" 
                     type="text" 
@@ -101,7 +102,7 @@ const AddIngredient = () => {
                 <BasicDateRangePicker func={dateRangerPicker}/>
                 <br />
                 <br />
-                <button type="submit"  variant="contained" className={classes.root}>Envoyer</button>
+                <LoadingButton type="submit" loading={load} color="primary" variant="contained">Envoyer</LoadingButton>
             </form>
             
         </>

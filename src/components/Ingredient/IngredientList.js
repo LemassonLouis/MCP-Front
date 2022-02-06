@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Link} from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -7,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState} from 'react';
-import Button from '@mui/material/Button';
 import {useNavigate} from 'react-router-dom';
+import Button  from '@mui/material/Button';
 // import {orderBy} from "lodash";
 
 const IngredientList = ({ingredients}) => {
@@ -30,7 +29,7 @@ const IngredientList = ({ingredients}) => {
 
     return (
         <>  
-            <Button onClick={() => navigate("/ingredient/add")} color="warning" variant="contained">Ajouter</Button>
+            <Button variant="contained" onClick={() => navigate("/ingredient/add")} >Ajouter</Button>
             <br/>
             <br />
             <div className='filter'>

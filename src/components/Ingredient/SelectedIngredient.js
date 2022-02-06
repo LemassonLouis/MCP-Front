@@ -1,12 +1,15 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import { removeIngredient } from '../../services/ingredientApiService';
-import Button from '@mui/material/Button';
+import Button  from '@mui/material/Button';
+import { useState} from 'react';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const SelectedIngredient = () => {
 
     const navigate = useNavigate();
 
+    const [load, setLoad] = useState(false);
     /**
      * Retrieving data from the state sent by ingredientList with state={i}
      */
@@ -15,6 +18,7 @@ const SelectedIngredient = () => {
     console.log(locationState);
 
     function sendRemoveIngredient(){
+        setLoad(true)
         removeIngredient(locationState.id).then(
             (res) => res.status === 204 && navigate('/ingredient')
         ).catch((err) => console.log(err))
@@ -22,7 +26,7 @@ const SelectedIngredient = () => {
 
     return (
         <div>
-            <Button color="warning" variant="contained" onClick={() => navigate(-1)}>Retour</Button>
+            <Button variant="outlined" onClick={() => navigate(-1)}>Retour</Button>
             <br />
             <br />
             Nom : {locationState?.ING_name} <br />
@@ -32,7 +36,7 @@ const SelectedIngredient = () => {
             {locationState?.ING_isArchive && 'Archivé'}
             <br />
             <br />
-            <Button color="error" variant="contained" onClick={() => sendRemoveIngredient()}>Supprimer</Button>
+            <LoadingButton loading={load} color="error" variant="contained" onClick={() => sendRemoveIngredient()}>Supprimer</LoadingButton>
         </div>
     );
 };

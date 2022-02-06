@@ -41,3 +41,8 @@ body{
 .MuiCard-root{
   margin: 1rem;
 }
+
+.spanBtn{
+  cursor: pointer;
+  color: #F48625;
+}

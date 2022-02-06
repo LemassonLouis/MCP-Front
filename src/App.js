@@ -12,6 +12,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Login from "./components/Login/Login";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./Theme/Colors"
+import Registration from "./components/Registration/Registration";
+import PrivateRoute from "./services/Routes/PrivateRoute";
 
 function App() {
   return (
@@ -21,12 +23,37 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound/>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/profile/:id" element={<Profile/>}/>
-        <Route path="/ingredient" element={<Ingredient/>}/>
-        <Route path="/ingredient/:id" element={<SelectedIngredient/>}/>
-        <Route path="/ingredient/add" element={<AddIngredient/>}/>
-        <Route path="/technique" element={<Technique/>}/>
+        <Route path="/registration" element={<Registration/>}/>
+        <Route path="/" element={
+          <PrivateRoute>
+            <Home/>
+        </PrivateRoute>
+        }/>
+        <Route path="/profile/:id" element={
+          <PrivateRoute>
+            <Profile/>
+          </PrivateRoute>
+        }/>
+        <Route path="/ingredient" element={
+          <PrivateRoute>
+            <Ingredient/>
+          </PrivateRoute>}/>
+        <Route path="/ingredient/:id" element={
+          <PrivateRoute>
+            <SelectedIngredient/>
+          </PrivateRoute>
+          
+        }/>
+        <Route path="/ingredient/add" element={
+          <PrivateRoute>
+            <AddIngredient/>
+          </PrivateRoute>
+        }/>
+        <Route path="/technique" element={
+          <PrivateRoute>
+            <Technique/>
+          </PrivateRoute>
+        }/>
       </Routes>
     </div>
     </ThemeProvider>
