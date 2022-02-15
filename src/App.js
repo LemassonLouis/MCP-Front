@@ -9,7 +9,8 @@ import SelectedIngredient from "./components/Ingredient/SelectedIngredient";
 import AddIngredient from "./components/Ingredient/AddIngredient";
 import DateFnsAdapter from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import CategoriesList from "./components/category/CategoriesList";
+import Category from "./components/category/Category";
+import "antd/dist/antd.css";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path="/ingredient/:id" element={<SelectedIngredient />} />
           <Route path="/ingredient/add" element={<AddIngredient />} />
           <Route path="/technique" element={<Technique />} />
-          <Route path="/categories" element={<CategoriesList />} />
+          <Route path="/categories" element={<Category />} />
         </Routes>
       </div>
     </LocalizationProvider>

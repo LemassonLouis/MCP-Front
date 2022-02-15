@@ -1,21 +1,9 @@
-import axios from "axios";
+import { deleteById, getAll, post } from "./mcpApi";
 
-const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
+export const getAllCategories = async (options) =>
+  getAll(`/categories`, options);
 
-export function getAllCategories() {
-  return new Promise(function (resolve, reject) {
-    axios
-      .get(mcpApiEndpoint + "categories", {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-      .then(function (res) {
-        console.log("categories : ", res);
-        return resolve(res);
-      })
-      .catch(function (err) {
-        return reject(err);
-      });
-  });
-}
+export const createCategory = async (data) => post(`/categories`, data);
+
+export const deleteCategory = async (categoryId) =>
+  deleteById(`/categories/${categoryId}`);
