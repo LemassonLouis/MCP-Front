@@ -1,6 +1,15 @@
+body{
+  margin: 0;
+}
+
 .App {
+  display: inline-block;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
   text-align: center;
 }
+
 
 .css-17vdz66{
   justify-content: center;
@@ -31,4 +40,9 @@
 
 .MuiCard-root{
   margin: 1rem;
+}
+
+.spanBtn{
+  cursor: pointer;
+  color: #F48625;
 }

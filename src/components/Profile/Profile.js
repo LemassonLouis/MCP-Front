@@ -1,42 +1,39 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import NavBar from '../NavBar/NavBar';
-import { getUser, getAllUsers } from '../../services/userApiService';
+import { getUser } from '../../services/userApiService';
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const Profile = () => {
 
     const [user, setUser] = useState();
-    const [allUsers, setAllUsers] = useState([]);
+    const [userData, setUserData] = useState(localStorage.getItem('connectedUser') || '');
+    const navigate = useNavigate();
+
+    const connectedUser = JSON.parse(userData);
 
     useEffect(() => {
-        getUser().then((res) => {
+        getUser(connectedUser.id).then((res) => {
             res.status === 200 && setUser(res.data);
-        }).catch((err) => {
-            console.log(err);
-        })
-        getAllUsers().then((res) => {
-            res.status === 200 && setAllUsers(res.data);
         }).catch((err) => {
             console.log(err);
         })
     }, [])
 
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/login")
+    }
+
     return (
         <div>
             <h1>Bienvenue sur votre profil</h1>
-            {user?.email && <p>Adresse email : {user?.email}</p> }
-            <div>
-                <ul>
-                    { 
-                        allUsers.map((i, idx) =>{
-                            return (<li key={idx}>
-                                Email : {i.email}
-                            </li>
-                            )
-                        })
-                    }
-                </ul>
-            </div>
+            {user?.email && <p>Adresse email : {user?.email}</p>}
+            <p>{user?.firstName} {user?.lastName}</p>
+            <br />
+            <br />
+            <Button color="error" variant="contained" onClick={() => handleLogout()}>Déconnexion</Button>
             <NavBar/>
         </div>
     );

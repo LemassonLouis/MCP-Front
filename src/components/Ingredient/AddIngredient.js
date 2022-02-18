@@ -1,16 +1,16 @@
-import React from 'react';
-import { useState } from 'react';
+import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { postIngredient } from '../../services/ingredientApiService';
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
-import TextField from '@mui/material/TextField';
+import {TextField, Button } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 
 const AddIngredient = () => {
 
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
-    
+    const [load, setLoad] = useState(false);
 
     const dateRangerPicker = (data) => {
         setInputs(values => ({...values, 'season' : data}))
@@ -31,6 +31,7 @@ const AddIngredient = () => {
      */
     const sendIngredient = (e) => {
         e.preventDefault();
+        setLoad(true);
         let ingredient = {
             name : inputs.name,
             price: parseInt(inputs.price),
@@ -44,11 +45,12 @@ const AddIngredient = () => {
         postIngredient(ingredient).then(
             (res) => res.status === 201 && navigate('/ingredient')
         ).catch((err) => console.log(err))
-    }
 
+    }
+    
     return (
         <>
-            <button onClick={() => navigate(-1)}>Retour</button>
+            <Button variant="outlined" onClick={()=>navigate(-1)}>Retour</Button>
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
@@ -61,6 +63,7 @@ const AddIngredient = () => {
                     name="name" 
                     onInput={handleChange}  />
                 <br/>
+                <br />
                 <TextField 
                     id="outlined-basic" 
                     label="Prix" 
@@ -69,7 +72,7 @@ const AddIngredient = () => {
                     name="price" 
                     onInput={handleChange}  />
                 <TextField 
-                    id="outlined-basic" 
+                    id="outline-basic" 
                     label="Unité" 
                     variant="outlined" 
                     type="text" 
@@ -97,7 +100,7 @@ const AddIngredient = () => {
                 <BasicDateRangePicker func={dateRangerPicker}/>
                 <br />
                 <br />
-                <button>Envoyer</button>
+                <LoadingButton type="submit" loading={load} color="primary" variant="contained">Envoyer</LoadingButton>
             </form>
             
         </>
