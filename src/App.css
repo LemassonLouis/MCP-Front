@@ -10,35 +10,39 @@ body{
   text-align: center;
 }
 
-
-.css-17vdz66{
+.css-17vdz66 {
   justify-content: center;
 }
 
 /**TEST**/
-.card{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
+.card {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 50px;
+  margin: 50px;
 }
 
-.filter{
+.uniqueCard {
+  margin: 5px;
+}
+
+.filter {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.onSort{
+.onSort {
   margin-right: 3rem;
   cursor: pointer;
 }
 
-.MuiCardMedia-root{
+.MuiCardMedia-root {
   object-fit: contain !important;
 }
 
-.MuiCard-root{
+.MuiCard-root {
   margin: 1rem;
 }
 

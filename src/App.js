@@ -1,5 +1,5 @@
-import {Routes, Route} from "react-router-dom";
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
 import NotFound from "./components/NotFound/NotFound";
@@ -14,6 +14,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from "./Theme/Colors"
 import Registration from "./components/Registration/Registration";
 import PrivateRoute from "./services/Routes/PrivateRoute";
+import Category from "./components/category/Category";
+import "antd/dist/antd.css";
+
 
 function App() {
   return (
@@ -54,6 +57,7 @@ function App() {
             <Technique/>
           </PrivateRoute>
         }/>
+        <Route path="/categories" element={<Category />} />
       </Routes>
     </div>
     </ThemeProvider>

@@ -7,6 +7,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 
 const AddIngredient = () => {
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({});
 
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
@@ -16,15 +18,15 @@ const AddIngredient = () => {
         setInputs(values => ({...values, 'season' : data}))
     }
 
-    /**
-     * Recovery of data entered by the user in the inputs
-     */
-    const handleChange = (e) => {
-        const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        setInputs(values => ({...values, [name]: value}));
-    }
+  /**
+   * Recovery of data entered by the user in the inputs
+   */
+  const handleChange = (e) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
 
     /**
      * Creation of an ingredient object to send to the back
