@@ -15,7 +15,8 @@ import theme from "./Theme/Colors"
 import Registration from "./components/Registration/Registration";
 import PrivateRoute from "./services/Routes/PrivateRoute";
 import Category from "./components/category/Category";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
+// import "antd/dist/antd.min.css";
 
 
 function App() {
@@ -57,7 +58,7 @@ function App() {
             <Technique/>
           </PrivateRoute>
         }/>
-        <Route path="/categories" element={<Category />} />
+        {/* <Route path="/categories" element={<Category />} /> */}
       </Routes>
     </div>
     </ThemeProvider>

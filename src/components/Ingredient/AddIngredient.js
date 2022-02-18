@@ -7,8 +7,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 
 const AddIngredient = () => {
-  const navigate = useNavigate();
-  const [inputs, setInputs] = useState({});
 
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
