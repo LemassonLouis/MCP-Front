@@ -17,7 +17,7 @@
 //           ...category,
 //           isArchive: false,
 //         };
-//         console.log(newCategory); 
+//         console.log(newCategory);
 //         await createCategory(newCategory);
 
 //         if (onFinish) {
