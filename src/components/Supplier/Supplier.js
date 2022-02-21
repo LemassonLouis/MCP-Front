@@ -1,4 +1,4 @@
-import { CardActionArea, Typography } from "@mui/material";
+import { Button, CardActionArea, CardActions, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
@@ -31,21 +31,20 @@ const Supplier = () => {
 
   return (
     <>
-      <div className="card">
-        {suppliersState.map((e) => {
-          return (
-            <Card key={e.id} sx={{ width: 250 }}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h6" component="div">
-                    {e.name}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          );
-        })}
-      </div>
+      <Card sx={{ maxWidth: 275 }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 25 }} color="text.secondary" gutterBottom>
+            Word of the Day
+          </Typography>
+          <Typography variant="h5" component="div">
+            benevolent
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            adjective
+          </Typography>
+          <Typography variant="body2">well meaning and kindly.</Typography>
+        </CardContent>
+      </Card>
       <NavBar />
     </>
   );
