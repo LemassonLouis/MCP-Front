@@ -11,7 +11,7 @@ import DateFnsAdapter from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Login from "./components/Login/Login";
 import { ThemeProvider } from '@mui/material/styles';
-import theme from "./Theme/Colors"
+import theme from "./Utils/Theme/Colors"
 import Registration from "./components/Registration/Registration";
 import PrivateRoute from "./services/Routes/PrivateRoute";
 import Category from "./components/category/Category";
