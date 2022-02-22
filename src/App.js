@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import UserContext from './Contexts/UserContext';
 import "./App.css";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
@@ -17,7 +18,6 @@ import Registration from "./components/Registration/Registration";
 import PrivateRoute from "./Routes/PrivateRoute";
 import Category from "./components/category/Category";
 
-export const UserContext = createContext(null);
 
 function App() {
 

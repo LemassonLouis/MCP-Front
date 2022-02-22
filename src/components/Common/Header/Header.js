@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css';
 import { useContext } from 'react';
-import { UserContext } from '../../../App';
+import UserContext from '../../../Contexts/UserContext';
 import {useNavigate} from 'react-router-dom';
 
 
