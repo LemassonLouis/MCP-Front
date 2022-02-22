@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 
-import ModalStyle from '../../Utils/ModalStyle';
+import { ModalStyle } from '../../Utils/ModalStyle';
 // import ModalNewImage from './ModalNewImage';
 
 // import imageApiService, { getAllImages } from '../../services/imageApiService';
