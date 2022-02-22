@@ -1,9 +1,10 @@
 import React from 'react';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../Common/NavBar/NavBar';
 import IngredientList from './IngredientList';
 import { useState } from 'react';
 import {TextField, Button} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
+import Header from '../Common/Header/Header';
 // import {orderBy} from "lodash";
 
 const Ingredient = () => {
@@ -23,26 +24,28 @@ const Ingredient = () => {
 
     return (
         <div>
-            <h1>Liste des ingrédients</h1>
+            <Header/>
             <br />
             <br />
-            <Button variant="contained" onClick={() => navigate("/ingredient/add")} >Ajouter</Button>
-            <br/>
-            <br />
-            <div className='filter'>
-                {/* <p className="onSort" onClick={() => onSort()}>Nom</p> */}
-                <TextField 
-                    id="outlined-basic" 
-                    label="Recherche" 
-                    variant="outlined" 
-                    type="text" 
-                    name="search" 
-                    size='small'
-                    onChange={((e) => {setSearchTerm(e.target.value)})}
-                    />
+            <div className='webapp-layout'>
+                <Button variant="contained" onClick={() => navigate("/ingredient/add")} >Ajouter</Button>
+                <br/>
+                <br />
+                <div className='filter'>
+                    {/* <p className="onSort" onClick={() => onSort()}>Nom</p> */}
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Recherche" 
+                        variant="outlined" 
+                        type="text" 
+                        name="search" 
+                        size='small'
+                        onChange={((e) => {setSearchTerm(e.target.value)})}
+                        />
+                </div>
+                <br/>
+                <IngredientList searchTerm={searchTerm}/>
             </div>
-            <br/>
-            <IngredientList searchTerm={searchTerm}/>
             <NavBar/>
         </div>
     );
