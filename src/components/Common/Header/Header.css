@@ -1,0 +1,26 @@
+.webapp-header
+{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    z-index: 999;
+    box-shadow: 5px 6px 20px 5px rgb(0 0 0 / 8%);
+    padding: 1rem;
+}
+
+.webapp-header_desktop{
+    justify-content: space-between;
+}
+
+.webapp-header > .webapp-header_logo{
+    cursor: pointer;
+}
+
+.webapp-header > .webapp-header_backBtn
+{
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+
