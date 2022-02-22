@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { postIngredient } from '../../services/ingredientApiService';
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
-import {TextField, Button } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import ModalListImage from '../Images/ModalListImages';
 
 
 const AddIngredient = () => {
@@ -13,18 +14,18 @@ const AddIngredient = () => {
     const [load, setLoad] = useState(false);
 
     const dateRangerPicker = (data) => {
-        setInputs(values => ({...values, 'season' : data}))
+        setInputs(values => ({ ...values, 'season': data }))
     }
 
-  /**
-   * Recovery of data entered by the user in the inputs
-   */
-  const handleChange = (e) => {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-    setInputs((values) => ({ ...values, [name]: value }));
-  };
+    /**
+     * Recovery of data entered by the user in the inputs
+     */
+    const handleChange = (e) => {
+        const target = e.target;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+        const name = target.name;
+        setInputs((values) => ({ ...values, [name]: value }));
+    };
 
     /**
      * Creation of an ingredient object to send to the back
@@ -33,13 +34,13 @@ const AddIngredient = () => {
         e.preventDefault();
         setLoad(true);
         let ingredient = {
-            name : inputs.name,
+            name: inputs.name,
             price: parseInt(inputs.price),
-            unit : inputs.unit,
+            unit: inputs.unit,
             vege: Boolean(inputs.vege),
             allergen: Boolean(inputs.allergen),
             archive: Boolean(inputs.archive),
-            season : inputs.season
+            season: inputs.season
         }
         console.log(ingredient);
         postIngredient(ingredient).then(
@@ -47,62 +48,63 @@ const AddIngredient = () => {
         ).catch((err) => console.log(err))
 
     }
-    
+
     return (
         <>
-            <Button variant="outlined" onClick={()=>navigate(-1)}>Retour</Button>
+            <Button variant="outlined" onClick={() => navigate(-1)}>Retour</Button>
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
-                <TextField 
+                <ModalListImage />
+                <TextField
                     required
-                    id="outlined-basic" 
-                    label="Nom" 
-                    variant="outlined" 
-                    type="text" 
-                    name="name" 
-                    onInput={handleChange}  />
-                <br/>
+                    id="outlined-basic"
+                    label="Nom"
+                    variant="outlined"
+                    type="text"
+                    name="name"
+                    onInput={handleChange} />
                 <br />
-                <TextField 
-                    id="outlined-basic" 
-                    label="Prix" 
-                    variant="outlined" 
-                    type="number" 
-                    name="price" 
-                    onInput={handleChange}  />
-                <TextField 
-                    id="outline-basic" 
-                    label="Unité" 
-                    variant="outlined" 
-                    type="text" 
-                    name="unit" 
-                    onInput={handleChange}  />
+                <br />
+                <TextField
+                    id="outlined-basic"
+                    label="Prix"
+                    variant="outlined"
+                    type="number"
+                    name="price"
+                    onInput={handleChange} />
+                <TextField
+                    id="outline-basic"
+                    label="Unité"
+                    variant="outlined"
+                    type="text"
+                    name="unit"
+                    onInput={handleChange} />
                 <br />
                 <br />
                 <label>
                     Végétarien :
-                    <input type="checkbox" name='vege' 
-                    onInput={handleChange} />
+                    <input type="checkbox" name='vege'
+                        onInput={handleChange} />
                 </label>
                 <label>
                     Allergène :
-                    <input type="checkbox" name='allergen' 
-                    onInput={handleChange} />
+                    <input type="checkbox" name='allergen'
+                        onInput={handleChange} />
                 </label>
                 <label>
-                    Archive : 
-                    <input type="checkbox" name='archive' 
-                    onInput={handleChange} />
+                    Archive :
+                    <input type="checkbox" name='archive'
+                        onInput={handleChange} />
                 </label>
                 <br />
                 <br />
-                <BasicDateRangePicker func={dateRangerPicker}/>
+                <BasicDateRangePicker func={dateRangerPicker} />
                 <br />
                 <br />
                 <LoadingButton type="submit" loading={load} color="primary" variant="contained">Envoyer</LoadingButton>
             </form>
-            
+
         </>
     );
 };
