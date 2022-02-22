@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import NavBar from '../Common/NavBar/NavBar';
-import UserContext from '../../Contexts/UserContext';
+import UserContext from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 

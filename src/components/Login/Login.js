@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
-import UserContext from '../../Contexts/UserContext';
+import UserContext from '../../contexts/UserContext';
 import {useNavigate} from 'react-router-dom';
 import {TextField, Alert} from '@mui/material';
 import { login } from '../../services/userApiService';
