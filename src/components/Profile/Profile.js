@@ -1,25 +1,15 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import NavBar from '../NavBar/NavBar';
+import { useState, useEffect, useContext } from 'react';
+import NavBar from '../Common/NavBar/NavBar';
+import { UserContext } from '../../App';
 import { getUser } from '../../services/userApiService';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 const Profile = () => {
 
-    const [user, setUser] = useState();
-    const [userData, setUserData] = useState(localStorage.getItem('connectedUser') || '');
+    const {currentUser} = useContext(UserContext);
     const navigate = useNavigate();
-
-    const connectedUser = JSON.parse(userData);
-
-    useEffect(() => {
-        getUser(connectedUser.id).then((res) => {
-            res.status === 200 && setUser(res.data);
-        }).catch((err) => {
-            console.log(err);
-        })
-    }, [])
 
     const handleLogout = () => {
         localStorage.clear();
@@ -29,8 +19,8 @@ const Profile = () => {
     return (
         <div>
             <h1>Bienvenue sur votre profil</h1>
-            {user?.email && <p>Adresse email : {user?.email}</p>}
-            <p>{user?.firstName} {user?.lastName}</p>
+            {currentUser?.email && <p>Adresse email : {currentUser?.email}</p>}
+            <p>{currentUser?.firstName} {currentUser?.lastName}</p>
             <br />
             <br />
             <Button color="error" variant="contained" onClick={() => handleLogout()}>Déconnexion</Button>
