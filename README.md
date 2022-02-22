@@ -1,3 +1,9 @@
+# API ENDPOINT
+
+Create a `.env` and put the line `REACT_APP_ENDPOINT="xxx.xxx.xxx.xxx:xxxx/api/"` and replace the informations.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
