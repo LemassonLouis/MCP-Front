@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import { removeIngredient } from '../../services/ingredientApiService';
-import Button  from '@mui/material/Button';
+import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 const SelectedIngredient = () => {
@@ -25,7 +25,7 @@ const SelectedIngredient = () => {
 
     return (
         <div>
-            <Button variant="outlined" onClick={() => navigate(-1)}>Retour</Button>
+            <ResponsiveHeader title={`Ingrédient ${locationState.ING_name}`}/>
             <br />
             <br />
             Nom : {locationState?.ING_name} <br />
