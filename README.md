@@ -1,6 +1,6 @@
 # API ENDPOINT
 
-Create a `.env` and put the line `REACT_APP_ENDPOINT="xxx.xxx.xxx.xxx:xxxx/api/"` and replace the informations.
+Create a `.env.local` and put the line `REACT_APP_ENDPOINT="xxx.xxx.xxx.xxx:xxxx/api/"` and replace the informations.
 
 
 
