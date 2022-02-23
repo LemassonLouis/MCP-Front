@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
 import { postIngredient } from '../../services/ingredientApiService';
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
-import {TextField, Button } from '@mui/material';
+import {TextField} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 
@@ -50,7 +51,7 @@ const AddIngredient = () => {
     
     return (
         <>
-            <Button variant="outlined" onClick={()=>navigate(-1)}>Retour</Button>
+            <ResponsiveHeader title="Ajouter un ingrédient"/>
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>

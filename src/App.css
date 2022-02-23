@@ -1,6 +1,3 @@
-body{
-  margin: 0;
-}
 
 .App {
   display: inline-block;
@@ -8,6 +5,7 @@ body{
   height: 100%;
   width: 100%;
   text-align: center;
+  position:absolute;
 }
 
 .css-17vdz66 {
@@ -21,6 +19,11 @@ body{
   flex-wrap: wrap;
   margin-bottom: 50px;
   margin: 50px;
+}
+
+.alert{
+  margin: 0 auto;
+  width: 50%;
 }
 
 .uniqueCard {

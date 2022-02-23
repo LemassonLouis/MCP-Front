@@ -7,7 +7,6 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 1rem;
 }
 
 nav {
@@ -16,7 +15,8 @@ nav {
   bottom: 0;
   width: 100%;
   background-color: white;
-  padding: 30px 0;
+  padding: 25px 0;
+  box-shadow: 5px 6px 20px 5px rgb(0 0 0 / 8%);
 }
 
 nav a {
