@@ -1,73 +1,64 @@
-// import { Button, Form, Input } from "antd";
-// import FormItem from "antd/lib/form/FormItem";
-// import { useCallback, useEffect } from "react";
-// import { createCategory } from "../../Api/CategoryService";
+import { IconButton, TextField, Typography } from "@mui/material";
+import { useCallback, useState } from "react";
+import { createCategory } from "../../services/CategoryService";
 
-// const CategoryForm = ({ onFinish }) => {
-//   const [form] = Form.useForm();
+const CategoryForm = ({ onClick }) => {
+  // const [form] = Form.useForm();
+  const [categoryState, setCategoryState] = useState("");
 
-//   const reset = useCallback(() => {
-//     form.resetFields();
-//   }, [form]);
+  // const [form] = form();
 
-//   const handleFormFinish = useCallback(
-//     async (category) => {
-//       try {
-//         const newCategory = {
-//           ...category,
-//           isArchive: false,
-//         };
-//         console.log(newCategory);
-//         await createCategory(newCategory);
+  // const reset = useCallback(() => {
+  //   form.resetFields();
+  // }, [form]);
 
-//         if (onFinish) {
-//           onFinish();
-//         }
+  const handleFormFinish = useCallback(
+    async (e) => {
+      try {
+        const newCategory = {
+          name: categoryState,
+          isArchive: false,
+        };
+        console.log(newCategory);
+        console.log("ici");
+        await createCategory(newCategory);
 
-//         reset();
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     },
-//     [onFinish, reset]
-//   );
+        if (onClick) {
+          // form.resetFields();
+          console.log("la");
+          onClick();
+        }
 
-//   useEffect(() => {
-//     reset();
-//   }, [reset]);
+        // reset();
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [categoryState, onClick]
+  );
 
-//   return (
-//     <Form form={form} onFinish={handleFormFinish}>
-//       <FormItem name="name" label="Nom de la catégorie">
-//         <Input placeholder="Nom de la catégorie" />
-//       </FormItem>
-//       <FormItem>
-//         <Button type="primary" htmlType="submit">
-//           Valider
-//         </Button>
-//       </FormItem>
-//     </Form>
-//   );
-// };
+  // useEffect(() => {
+  //   reset();
+  // }, [reset]);
 
-// export default CategoryForm;
+  return (
+    <div>
+      <Typography>{categoryState}</Typography>
+      <form name="form" onSubmit={handleFormFinish}>
+        <TextField
+          label="Catégorie"
+          variant="outlined"
+          value={categoryState}
+          onChange={(e) => setCategoryState(e.target.value)}
+        ></TextField>
+        <div>
+          <IconButton type="submit" variant="contained" color="primary">
+            Créer
+          </IconButton>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-// <Form
-//   form={form}
-//   onFinish={handleFormFinish}
-//   labelCol={{ span: 8 }}
-//   wrapperCol={{ offset: 8, span: 16 }}
-// >
-//   <FormItem name="name" label="Créer une catégorie" wrapperCol={{ span: 8 }}>
-//     <Input.Group compact>
-//       <Input
-//         placeholder="Nom de la catégorie"
-//         style={{ width: "calc(100% - 200px)" }}
-//         name="name"
-//       />
-//       <Button type="primary" htmlType="submit">
-//         Valider
-//       </Button>
-//     </Input.Group>
-//   </FormItem>
-// </Form>;
+export default CategoryForm;

@@ -51,7 +51,7 @@ const Login = () => {
                     required
                     label="Email" 
                     variant="outlined" 
-                    type="text" 
+                    type="email" 
                     name="username" 
                     onInput={handleChange}  />
                 <br/>

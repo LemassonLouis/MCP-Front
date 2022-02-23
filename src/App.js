@@ -11,12 +11,11 @@ import DateFnsAdapter from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import Login from "./components/Login/Login";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./Theme/Colors";
+import theme from "./Utils/Theme/Colors";
 import Registration from "./components/Registration/Registration";
-import PrivateRoute from "./services/Routes/PrivateRoute";
+import PrivateRoute from "./Routes/PrivateRoute";
 import Category from "./components/category/Category";
-import "antd/dist/antd.css";
-import "antd/dist/antd.min.css";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
@@ -75,9 +74,17 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/categories" element={<Category />} />
+            <Route
+              path="/categories"
+              element={
+                <PrivateRoute>
+                  <Category />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </div>
+        <NavBar />
       </ThemeProvider>
     </LocalizationProvider>
   );
