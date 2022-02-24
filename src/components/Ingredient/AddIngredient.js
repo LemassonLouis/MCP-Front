@@ -5,6 +5,8 @@ import { postIngredient } from '../../services/ingredientApiService';
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
 import {TextField} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
+import '../Common/Footer/FooterResponsiveBtn.css'
 
 
 const AddIngredient = () => {
@@ -101,7 +103,8 @@ const AddIngredient = () => {
                 <BasicDateRangePicker func={dateRangerPicker}/>
                 <br />
                 <br />
-                <LoadingButton type="submit" loading={load} color="primary" variant="contained">Envoyer</LoadingButton>
+                <LoadingButton className='webapp-layout__desktop--btn' type="submit" loading={load} color="primary" variant="contained">Envoyer</LoadingButton>
+                <FooterResponsiveBtn color="primary" load={load} txt="Envoyer"/>
             </form>
             
         </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import NavBar from '../Common/NavBar/NavBar';
-import UserContext from '../../Contexts/UserContext';
+import UserContext from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
@@ -22,7 +22,18 @@ const Profile = () => {
             <p>{currentUser?.firstName} {currentUser?.lastName}</p>
             <br />
             <br />
+            <div>
+                <Button variant="outlined" onClick={() => navigate(`/profile/${currentUser?.id}/edit`)}>Modifier mon profil</Button>
+                <Button variant="outlined" onClick={() => navigate(`/profile/${currentUser?.id}/edit/password`)} >Modifier mon mot de passe</Button>
+            </div>
+            <br />
+            <br />
             <Button color="error" variant="contained" onClick={() => handleLogout()}>Déconnexion</Button>
+            <br />
+            <br />
+            <div>
+                { currentUser?.roles[0] === 'ROLE_ADMIN' && <Button variant="outlined">Utilisateurs</Button>}
+            </div>
             <NavBar/>
         </div>
     );

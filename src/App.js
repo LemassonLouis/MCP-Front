@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import UserContext from "./Contexts/UserContext";
+import UserContext from "./contexts/UserContext";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
@@ -15,17 +15,18 @@ import Login from "./components/Login/Login";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Utils/Theme/Colors";
 import Registration from "./components/Registration/Registration";
-import PrivateRoute from "./Routes/PrivateRoute";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 import Category from "./components/category/Category";
+import EditProfile from "./components/Profile/EditProfile";
+import EditPwd from "./components/Profile/EditPwd";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("connectedUser"));
-    if (user) {
-      setCurrentUser(user);
-    }
+    user && setCurrentUser(user);
   }, []);
 
   return (
@@ -35,8 +36,22 @@ function App() {
           <div className="App">
             <Routes>
               <Route path="*" element={<NotFound />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/registration" element={<Registration />} />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <Login />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/registration"
+                element={
+                  <PublicRoute>
+                    <Registration />
+                  </PublicRoute>
+                }
+              />
               <Route
                 path="/"
                 element={
@@ -50,6 +65,22 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Profile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile/:id/edit"
+                element={
+                  <PrivateRoute>
+                    <EditProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile/:id/edit/password"
+                element={
+                  <PrivateRoute>
+                    <EditPwd />
                   </PrivateRoute>
                 }
               />
@@ -85,6 +116,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
+
               <Route
                 path="/categories"
                 element={
