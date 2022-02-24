@@ -85,7 +85,14 @@ function App() {
                   </PrivateRoute>
                 }
               />
-              {/* <Route path="/categories" element={<Category />} /> */}
+              <Route
+                path="/categories"
+                element={
+                  <PrivateRoute>
+                    <Category />
+                  </PrivateRoute>
+                }
+              />
             </Routes>
           </div>
         </UserContext.Provider>

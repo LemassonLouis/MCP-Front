@@ -31,6 +31,15 @@ const NavBar = () => {
       >
         Profil
       </NavLink>
+      <NavLink
+        /**
+         * Pass the id of the connected user
+         */
+        to="/categories"
+        className={({ isActive }) => (isActive ? "activeLink" : "")}
+      >
+        Catégorie
+      </NavLink>
     </nav>
   );
 };
