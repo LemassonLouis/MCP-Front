@@ -1,7 +1,12 @@
 import React from "react";
+import { useContext } from 'react';
+import UserContext from '../../../contexts/UserContext';
 import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
+
+  const {currentUser} = useContext(UserContext);
+
   return (
     <nav>
       <NavLink
@@ -26,7 +31,7 @@ const NavBar = () => {
         /**
          * Pass the id of the connected user
          */
-        to="/profile/:id"
+        to={`/profile/${currentUser?.id}`}
         className={({ isActive }) => (isActive ? "activeLink" : "")}
       >
         Profil

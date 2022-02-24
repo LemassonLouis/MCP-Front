@@ -19,7 +19,7 @@ const Registration = () => {
                 setAlert(false)
                 setValidInputPwd(false)
             }
-        }, 3000)
+        }, 4000)
     }, [alert]);
 
     /**

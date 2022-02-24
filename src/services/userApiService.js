@@ -1,4 +1,5 @@
 import axios from "axios";
+import getJWTHeader from "./token";
 
 const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
 
@@ -102,5 +103,36 @@ export function getAllUsers(){
         }
     )
 }
+
+/**
+ * in progress !!!
+ */
+export function editUser(user, currentUser) {
+    console.log('editUser');
+    console.log(user);
+    console.log(mcpApiEndpoint + 'users');
+    return new Promise(function (resolve, reject) {
+        const data = {
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+        };
+        axios
+            .put(mcpApiEndpoint + 'users/' + currentUser?.id, data, {
+                headers: {
+                    Accept: "application/json",
+                    authorization: getJWTHeader(currentUser)
+                },
+            })
+            .then(function (res) {
+                console.log("editUser", res);
+                return resolve(res);
+            })
+            .catch(function (err) {
+                console.log("editUser", err);
+                return reject(err);
+            });
+        });
+    }
 
 

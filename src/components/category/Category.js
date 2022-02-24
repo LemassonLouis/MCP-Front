@@ -1,6 +1,5 @@
 import CategoryForm from "./CategoryForm";
 import { useCallback, useEffect, useState } from "react";
-import NavBar from "../NavBar/NavBar";
 import {
   deleteCategory,
   getAllCategories,

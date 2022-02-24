@@ -3,6 +3,8 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import { removeIngredient } from '../../services/ingredientApiService';
 import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
 import LoadingButton from '@mui/lab/LoadingButton';
+import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
+import '../Common/Footer/FooterResponsiveBtn.css'
 
 const SelectedIngredient = () => {
 
@@ -35,7 +37,8 @@ const SelectedIngredient = () => {
             {locationState?.ING_isArchive && 'Archivé'}
             <br />
             <br />
-            <LoadingButton loading={load} color="error" variant="contained" onClick={() => sendRemoveIngredient()}>Supprimer</LoadingButton>
+            <LoadingButton className='webapp-layout__desktop--btn' loading={load} color="error" variant="contained" onClick={() => sendRemoveIngredient()}>Supprimer</LoadingButton>
+            <FooterResponsiveBtn color="error" load={load} txt="Supprimer"/>
         </div>
     );
 };
