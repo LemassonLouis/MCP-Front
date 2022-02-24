@@ -24,7 +24,7 @@ const Login = () => {
                 setAlert(false)
                 setValidInput(false)
             }
-        }, 3000)
+        }, 4000)
     }, [alert]);
     
     /**
