@@ -18,6 +18,8 @@ import Registration from "./components/Registration/Registration";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import Category from "./components/category/Category";
+import EditProfile from "./components/Profile/EditProfile";
+import EditPwd from "./components/Profile/EditPwd";
 
 function App() {
 
@@ -55,6 +57,16 @@ function App() {
                   <Profile/>
                 </PrivateRoute>
               }/>
+              <Route path="/profile/:id/edit" element={
+                <PrivateRoute>
+                  <EditProfile/>
+                </PrivateRoute>
+              }/>
+              <Route path="/profile/:id/edit/password" element={
+                <PrivateRoute>
+                  <EditPwd/>
+                </PrivateRoute>
+              }/>
               <Route path="/ingredient" element={
                 <PrivateRoute>
                   <Ingredient/>
@@ -74,6 +86,7 @@ function App() {
                   <Technique/>
                 </PrivateRoute>
               }/>
+              
               {/* <Route path="/categories" element={<Category />} /> */}
             </Routes>
           </div>
