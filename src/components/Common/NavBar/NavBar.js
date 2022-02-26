@@ -1,11 +1,11 @@
 import React from "react";
 import { useContext } from 'react';
-import UserContext from '../../../contexts/UserContext';
+import UserContext from '../../../Contexts/UserContext';
 import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
 
-  const {currentUser} = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <nav>

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import UserContext from "./contexts/UserContext";
+import UserContext from "./Contexts/UserContext";
 import "./App.css";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
@@ -15,8 +15,8 @@ import Login from "./components/Login/Login";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Utils/Theme/Colors";
 import Registration from "./components/Registration/Registration";
-import PrivateRoute from "./routes/PrivateRoute";
-import PublicRoute from "./routes/PublicRoute";
+import PrivateRoute from "./Routes/PrivateRoute";
+import PublicRoute from "./Routes/PublicRoute";
 import Category from "./components/category/Category";
 import EditProfile from "./components/Profile/EditProfile";
 import EditPwd from "./components/Profile/EditPwd";
