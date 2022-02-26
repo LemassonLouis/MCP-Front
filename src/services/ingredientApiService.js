@@ -1,23 +1,25 @@
 import axios from "axios";
 
-const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
+const INGREDIENTS = process.env.REACT_APP_INGREDIENTS;
+
+const TAG = "ingredients"
 
 export function getAllIngredients() {
-  console.log("getAllIngredients");
-  console.log(mcpApiEndpoint, "ingredients");
+  console.log("getAll" + TAG);
+  console.log(INGREDIENTS)
   return new Promise(function (resolve, reject) {
     axios
-      .get(mcpApiEndpoint + "ingredients", {
+      .get(INGREDIENTS, {
         headers: {
           Accept: "application/json",
         },
       })
       .then(function (res) {
-        console.log("getAllIngredients", res);
+        console.log("getAll"+ TAG, res);
         return resolve(res);
       })
       .catch(function (err) {
-        console.log("getAllIngredients", err);
+        console.log("getAll" + TAG, err);
         return reject(err);
       });
   });
@@ -25,8 +27,8 @@ export function getAllIngredients() {
 
 export function postIngredient(ingredient) {
   console.log(ingredient);
-  console.log("postIngredient");
-  console.log(mcpApiEndpoint + "ingredients");
+  console.log("post" + TAG);
+  console.log(INGREDIENTS);
   return new Promise(function (resolve, reject) {
     const data = {
       iNGName: ingredient.name,
@@ -38,38 +40,38 @@ export function postIngredient(ingredient) {
       // "seasons": ingredient.season
     };
     axios
-      .post(mcpApiEndpoint + "ingredients", data, {
+      .post(INGREDIENTS, data, {
         headers: {
           Accept: "application/json",
         },
       })
       .then(function (res) {
-        console.log("postIngredient", res);
+        console.log("post" + TAG, res);
         return resolve(res);
       })
       .catch(function (err) {
-        console.log("postIngredient", err);
+        console.log("post" + TAG, err);
         return reject(err);
       });
   });
 }
 
 export function removeIngredient(id) {
-  console.log("deleteIngredient");
-  console.log(mcpApiEndpoint + "ingredients/" + id);
+  console.log("remove" + TAG);
+  console.log(INGREDIENTS + "/" + id);
   return new Promise(function (resolve, reject) {
     axios
-      .delete(mcpApiEndpoint + "ingredients/" + id, {
+      .delete(INGREDIENTS + "/" + id, {
         headers: {
           Accept: "application/json",
         },
       })
       .then(function (res) {
-        console.log("removeIngredient", res);
+        console.log("remove" + TAG, res);
         return resolve(res);
       })
       .catch(function (err) {
-        console.log("removeIngredient", err);
+        console.log("remove" + TAG, err);
         return reject(err);
       });
   });

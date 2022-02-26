@@ -1,19 +1,14 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postIngredient } from '../../services/ingredientApiService';
+
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
 import { TextField, Button } from '@mui/material';
-=======
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
-import { postIngredient } from '../../services/ingredientApiService';
-import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
-import {TextField} from '@mui/material';
->>>>>>> dev
 import LoadingButton from '@mui/lab/LoadingButton';
-import ModalListImage from '../Images/ModalListImages';
+
+import { postIngredient } from '../../services/ingredientApiService';
+import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
+import '../Common/Footer/FooterResponsiveBtn.css';
+import '../Images/ModalListImages';
 
 
 const AddIngredient = () => {
@@ -111,7 +106,8 @@ const AddIngredient = () => {
                 <BasicDateRangePicker func={dateRangerPicker} />
                 <br />
                 <br />
-                <LoadingButton type="submit" loading={load} color="primary" variant="contained">Envoyer</LoadingButton>
+                <LoadingButton className='webapp-layout__desktop--btn' type="submit" loading={load} color="primary" variant="contained">Envoyer</LoadingButton>
+                <FooterResponsiveBtn color="primary" load={load} txt="Envoyer" />
             </form>
 
         </>

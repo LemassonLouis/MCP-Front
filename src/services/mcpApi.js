@@ -1,5 +1,4 @@
 import axios from "axios";
-import { reject } from "lodash";
 
 const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
 
