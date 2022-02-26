@@ -8,7 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { postIngredient } from '../../services/ingredientApiService';
 import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
 import '../Common/Footer/FooterResponsiveBtn.css';
-import '../Images/ModalListImages';
+import { ModalListImage } from '../Images/ModalListImages';
 
 
 const AddIngredient = () => {
