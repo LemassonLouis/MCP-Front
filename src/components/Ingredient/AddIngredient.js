@@ -5,9 +5,10 @@ import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
 import { TextField, Button } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { postIngredient } from '../../services/ingredientApiService';
+import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
 import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
 import '../Common/Footer/FooterResponsiveBtn.css';
+import { postIngredient } from '../../services/ingredientApiService';
 import ModalListImage from '../Images/ModalListImages';
 
 
