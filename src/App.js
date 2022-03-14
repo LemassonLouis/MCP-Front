@@ -7,6 +7,7 @@ import Profile from "./components/Profile/Profile";
 import NotFound from "./components/NotFound/NotFound";
 import Ingredient from "./components/Ingredient/Ingredient";
 import Technique from "./components/Technique/Technique";
+import Supplier from "./components/Supplier/Supplier";
 import SelectedIngredient from "./components/Ingredient/SelectedIngredient";
 import AddIngredient from "./components/Ingredient/AddIngredient";
 import DateFnsAdapter from "@mui/lab/AdapterDateFns";
@@ -20,6 +21,8 @@ import PublicRoute from "./Routes/PublicRoute";
 import Category from "./components/category/Category";
 import EditProfile from "./components/Profile/EditProfile";
 import EditPwd from "./components/Profile/EditPwd";
+import SelectedSupplier from "./components/Supplier/SelectedSupplier";
+import AddSupplier from "./components/Supplier/AddSupplier";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -122,6 +125,30 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Category />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/suppliers"
+                element={
+                  <PrivateRoute>
+                    <Supplier />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/suppliers/:id"
+                element={
+                  <PrivateRoute>
+                    <SelectedSupplier />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/suppliers/add"
+                element={
+                  <PrivateRoute>
+                    <AddSupplier />
                   </PrivateRoute>
                 }
               />

@@ -45,17 +45,17 @@ const Login = () => {
             username: inputs.username,
             password: inputs.password
         }
-
-        console.log('signIn()', data);
-
-        login(data).then((res) => {
-            if (res.status === 200) {
-                localStorage.setItem('token', res.data.token);
-                localStorage.setItem('connectedUser', JSON.stringify(res.data.data));
-                setCurrentUser(res.data.data);
-                navigate('/')
+        console.log(data);
+        login(data).then(
+            (res) => {
+                if (res.status === 200) {
+                    localStorage.setItem('token', res.data.token);
+                    localStorage.setItem('connectedUser', JSON.stringify(res.data.data));
+                    setCurrentUser(res.data.data);
+                    navigate('/')
+                }
             }
-        }).catch((err) => {
+        ).catch((err) => {
             if (err.response.status === 401) {
                 setValidInput(true)
                 setAlert(true)
