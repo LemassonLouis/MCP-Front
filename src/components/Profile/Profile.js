@@ -1,52 +1,46 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import NavBar from "../NavBar/NavBar";
-import { getUser, getAllUsers } from "../../services/userApiService";
-import Button from "@mui/material/Button";
-
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useContext } from 'react';
+import NavBar from '../Common/NavBar/NavBar';
+import UserContext from '../../Contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const Profile = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState();
-  const [allUsers, setAllUsers] = useState([]);
 
-  useEffect(() => {
-    getUser()
-      .then((res) => {
-        res.status === 200 && setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    getAllUsers()
-      .then((res) => {
-        res.status === 200 && setAllUsers(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    const { currentUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
-  return (
-    <div>
-      <h1>Bienvenue sur votre profil</h1>
-      {user?.email && <p>Adresse email : {user?.email}</p>}
-      <div>
-        <ul>
-          {allUsers.map((i, idx) => {
-            return <li key={idx}>Email : {i.email}</li>;
-          })}
-        </ul>
-      </div>
-      <br />
-      <Button onClick={() => navigate("/supplier")} variant="contained">
-        Fournisseur
-      </Button>
-      <br />
-      <NavBar />
-    </div>
-  );
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/login")
+    }
+
+    return (
+        <div>
+            <h1>Bienvenue sur votre profil</h1>
+            {currentUser?.email && <p>Adresse email : {currentUser?.email}</p>}
+            <p>{currentUser?.firstName} {currentUser?.lastName}</p>
+            <br />
+            <br />
+            <div>
+                <Button variant="outlined" onClick={() => navigate(`/profile/${currentUser?.id}/edit`)}>Modifier mon profil</Button>
+                <Button variant="outlined" onClick={() => navigate(`/profile/${currentUser?.id}/edit/password`)} >Modifier mon mot de passe</Button>
+            </div>
+            <br />
+            <br />
+            <Button variant="contained" onClick={() => navigate("/suppliers")} >Fournisseurs</Button>
+            <br />
+            <br />
+            <br />
+            <Button color="error" variant="contained" onClick={() => handleLogout()}>Déconnexion</Button>
+            <br />
+            <br />
+            <div>
+                {currentUser?.roles[0] === 'ROLE_ADMIN' && <Button variant="outlined">Utilisateurs</Button>}
+            </div>
+            <NavBar />
+        </div>
+    );
 };
 
 export default Profile;

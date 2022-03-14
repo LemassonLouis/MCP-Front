@@ -1,51 +1,104 @@
-import { Button, CardActionArea, CardActions, Typography } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CircularProgress,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useCallback, useEffect, useState } from "react";
-import { getAllSuppliers } from "../../services/supplierApiService";
-import NavBar from "../NavBar/NavBar";
+import {
+  getAllSuppliers,
+  deleteSupplier,
+} from "../../services/SupplierService";
+import { useNavigate } from "react-router-dom";
+import ResponsiveHeader from "../Common/Header/ResponsiveHeader";
 
-const Supplier = () => {
+const Supplier = ({ onClick }) => {
   const [suppliersState, setSuppliersState] = useState([]);
-  const [suppliersLoader, setSuppliersLoader] = useState(false);
+  const [suppliersLoading, setSuppliersLoading] = useState(false);
 
-  const initSuppliers = useCallback(() => {
-    setSuppliersLoader(true);
-    const suppliersLoader = getAllSuppliers()
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res.data);
-          setSuppliersState(res.data);
-          setSuppliersLoader(false);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const navigate = useNavigate();
+
+  const initSuppliers = useCallback(async () => {
+    try {
+      setSuppliersLoading(true);
+      const suppliers = await getAllSuppliers();
+      if (suppliers.status === 200) {
+        console.log(suppliers);
+        setSuppliersLoading(false);
+        setSuppliersState(suppliers.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
+  const deleteSupplierById = useCallback(
+    async (id) => {
+      console.log(id);
+      await deleteSupplier(id);
+      initSuppliers();
+    },
+    [initSuppliers]
+  );
+
   useEffect(() => {
+    if (onClick) {
+      initSuppliers();
+    }
     initSuppliers();
-  }, [initSuppliers]);
+  }, [initSuppliers, onClick]);
 
   return (
     <>
-      <Card sx={{ maxWidth: 275 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 25 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography>
-          <Typography variant="h5" component="div">
-            benevolent
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
-          </Typography>
-          <Typography variant="body2">well meaning and kindly.</Typography>
-        </CardContent>
-      </Card>
-      <NavBar />
+      <ResponsiveHeader title={"Liste des fournisseurs"} /> <br /> <br />
+      <Button variant="contained" onClick={() => navigate("/suppliers/add")}>
+        Ajouter
+      </Button>
+      <div className="card">
+        {suppliersLoading && <CircularProgress />}
+        {suppliersState.map((e) => {
+          return (
+            <>
+              <div className="uniqueCard" key={e.id}>
+                <Card sx={{ maxWidth: 350 }}>
+                  <CardContent>
+                    <Typography
+                      component="div"
+                      variant="h5"
+                      color="text.secondary"
+                    >
+                      {e.SUP_name}
+                    </Typography>
+                    <Typography
+                      component="div"
+                      variant="h6"
+                      color="text.secondary"
+                    >
+                      {e.SUP_city}
+                    </Typography>
+                    <Typography
+                      component="div"
+                      variant="h6"
+                      color="text.secondary"
+                    >
+                      {e.SUP_phone}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton variant="center">
+                      <DeleteIcon onClick={() => deleteSupplierById(e.id)} />
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              </div>
+            </>
+          );
+        })}
+      </div>
     </>
   );
 };
