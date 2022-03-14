@@ -4,22 +4,19 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import ButtonBase from '@mui/material/ButtonBase';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 import { ModalStyle } from '../../Utils/ModalStyle';
-import { autocompleteClasses } from '@mui/material';
-import { formatRelative } from 'date-fns';
 
 // import ModalNewImage from './ModalNewImage';
 // import imageApiService, { getAllImages } from '../../services/imageApiService';
 
 
 
-const modal = {
+const modalStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -37,22 +34,45 @@ const modal = {
 
 
 
-const card = {
+const cardStyle = {
     position: 'relative',
     margin: 'auto',
     marginBottom: 1,
-    width: '70%',
-    maxWidth: 350
+    width: '30%',
+    minWidth: 210,
+    maxWidth: 300,
 };
 
 
 
-const texte = {
-    position: "absolute",
-    top: "50%",
+const textStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    fontSize: '15pt',
+    color: 'white',
+    textTransform: 'uppercase',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    opacity: 0,
+    transition: '0.3s',
+    '&:hover': {
+        opacity: 1,
+    }
+};
+
+
+
+const imageStyle = {
     width: "100%",
-    textAlign: "center",
-    backgroundColor: "none",
+    height: "23vw",
+    maxHeight: 250,
+    minHeight: 160,
+    objectFit: "cover !important",
 };
 
 
@@ -61,11 +81,21 @@ const texte = {
  * Component ModalListImage, display a button and show modal by clicking on it.
  * @returns {React.HTML} REACT.HTML
  */
-export default function ModalListImage() {
+const ModalListImage = ({ imageID }) => {
 
     // const [images, setImages] = useState([]);
     // const [searchTerm, setSearchTerm] = useState('');
     const [openedModal, setOpenedModal] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(imageID);
+
+    var imageURL;
+
+    if (selectedImage == 0) {
+        imageURL = "https://via.placeholder.com/500x500.png?text=NONE";
+    }
+    else {
+        imageURL = "https://via.placeholder.com/640x500.png/0077ff?text=accusamus";
+    }
 
     // imageApiService.getAllImages().then(res => {
     //     if (res.status == 200) {
@@ -77,25 +107,19 @@ export default function ModalListImage() {
 
     return (
         <div>
-            {/* <Button onClick={() => { setOpenedModal(true) }}>Choisir une image</Button> */}
-            {/* <ButtonBase
-                onClick={() => { setOpenedModal(true) }}
-            >
-                <img id="bon" src="127.0.0.1:8000/img/icone image.svg" />
-                <p>Choisir une image</p>
-            </ButtonBase > */}
-            <Card sx={card}>
+            <Card sx={cardStyle}>
                 <CardActionArea
                     onClick={() => { setOpenedModal(true) }}
                 >
                     <CardMedia
                         component="img"
+                        sx={imageStyle}
                         // image="127.0.0.1:8000/img/icone image.svg"
-                        image="https://via.placeholder.com/640x480.png/0077ff?text=accusamus"
+                        image={imageURL}
                     />
                     <Typography
                         component="p"
-                        sx={texte}
+                        sx={textStyle}
                     >
                         Choisir une image
                     </Typography>
@@ -107,7 +131,7 @@ export default function ModalListImage() {
             // onClose={() => { setOpenedModal(false) }}
             >
                 <Fade in={openedModal}>
-                    <Box sx={modal}>
+                    <Box sx={modalStyle}>
                         {/* <ModalNewImage /> */}
                         <h2 id="parent-modal-title">*Liste des images*</h2>
                         <p id="parent-modal-description">
@@ -122,3 +146,5 @@ export default function ModalListImage() {
         </div >
     );
 }
+
+export default ModalListImage;
