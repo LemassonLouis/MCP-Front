@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import NavBar from '../Common/NavBar/NavBar';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../Contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
@@ -34,7 +34,16 @@ const Profile = () => {
             <div>
                 { currentUser?.roles[0] === 'ROLE_ADMIN' && <Button variant="outlined">Utilisateurs</Button>}
             </div>
-            <NavBar/>
+            <br />
+            <br />
+            <Button variant="contained" onClick={() => navigate("/suppliers")} >Fournisseurs</Button>
+            <br />
+            <br />
+            <br />
+            <Button color="error" variant="contained" onClick={() => handleLogout()}>Déconnexion</Button>
+            <br />
+            <br />
+            <NavBar />
         </div>
     );
 };
