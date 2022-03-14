@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 const Profile = () => {
 
-    const {currentUser} = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -32,7 +32,7 @@ const Profile = () => {
             <br />
             <br />
             <div>
-                { currentUser?.roles[0] === 'ROLE_ADMIN' && <Button variant="outlined">Utilisateurs</Button>}
+                {currentUser?.roles[0] === 'ROLE_ADMIN' && <Button variant="outlined">Utilisateurs</Button>}
             </div>
             <br />
             <br />

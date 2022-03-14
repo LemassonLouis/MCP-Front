@@ -128,7 +128,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
-                            <Route
+              <Route
                 path="/suppliers"
                 element={
                   <PrivateRoute>

@@ -1,11 +1,11 @@
 import React from "react";
 import { useContext } from 'react';
-import UserContext from '../../../contexts/UserContext';
+import UserContext from '../../../Contexts/UserContext';
 import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
 
-  const {currentUser} = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <nav>
@@ -35,6 +35,15 @@ const NavBar = () => {
         className={({ isActive }) => (isActive ? "activeLink" : "")}
       >
         Profil
+      </NavLink>
+      <NavLink
+        /**
+         * Pass the id of the connected user
+         */
+        to="/categories"
+        className={({ isActive }) => (isActive ? "activeLink" : "")}
+      >
+        Catégorie
       </NavLink>
     </nav>
   );

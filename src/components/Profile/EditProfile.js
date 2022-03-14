@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../Contexts/UserContext';
 import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
 import { editUser } from '../../services/userApiService';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -11,7 +11,7 @@ import '../Common/Footer/FooterResponsiveBtn.css'
 
 const EditProfile = () => {
 
-    const {currentUser} = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
     const [load, setLoad] = useState(false);
@@ -23,7 +23,7 @@ const EditProfile = () => {
         const target = e.target;
         const value = target.value;
         const name = target.name;
-        setInputs(values => ({...values, [name]: value}));
+        setInputs(values => ({ ...values, [name]: value }));
     }
 
     /**
@@ -48,39 +48,39 @@ const EditProfile = () => {
     }
     return (
         <div>
-            <ResponsiveHeader title="Modifier mon profil"/>
-            <br/>
+            <ResponsiveHeader title="Modifier mon profil" />
+            <br />
             <br />
             <form onSubmit={e => editProfile(e)}>
                 <div>
-                    <TextField 
+                    <TextField
                         required
-                        label="Email" 
-                        variant="outlined" 
-                        type="email" 
+                        label="Email"
+                        variant="outlined"
+                        type="email"
                         name="email"
-                        onInput={handleChange}  />
-                    <TextField 
+                        onInput={handleChange} />
+                    <TextField
                         required
-                        label="Prénom" 
-                        variant="outlined" 
-                        type="text" 
-                        name="firstName" 
-                        onInput={handleChange}  />
+                        label="Prénom"
+                        variant="outlined"
+                        type="text"
+                        name="firstName"
+                        onInput={handleChange} />
                     <br />
                     <br />
-                    <TextField 
+                    <TextField
                         required
-                        label="Nom" 
-                        variant="outlined" 
-                        type="text" 
-                        name="lastName" 
-                        onInput={handleChange}  />
-                    <br/>
+                        label="Nom"
+                        variant="outlined"
+                        type="text"
+                        name="lastName"
+                        onInput={handleChange} />
+                    <br />
                     <br />
                 </div>
                 <LoadingButton className='webapp-layout__desktop--btn' type="submit" loading={load} color="primary" variant="contained">Modifier</LoadingButton>
-                <FooterResponsiveBtn color="primary" load={load} txt="Modifier"/>
+                <FooterResponsiveBtn color="primary" load={load} txt="Modifier" />
             </form>
         </div>
     );

@@ -13,7 +13,6 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Box from "@mui/material/Box";
 
 const Category = ({ onClick }) => {
   const [categoriesState, setCategoriesState] = useState([]);
@@ -28,6 +27,7 @@ const Category = ({ onClick }) => {
         setCategoriesState(categories.data);
       }
     } catch (err) {
+      console.log("ok");
       console.log(err);
     }
   }, []);
