@@ -72,18 +72,31 @@ const textStyle = {
 
 
 const imageStyle = {
-    width: "100%",
-    height: "23vw",
+    width: '100%',
+    height: '23vw',
     maxHeight: 210,
     minHeight: 160,
-    objectFit: "cover !important",
+    objectFit: 'cover !important',
 };
 
 
 
 const cardContainerStyle = {
-    overflow: "auto",
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    maxHeight: '50vh',
 };
+
+
+
+const cardStyle = {
+    width: '25%',
+    maxWidth: '150px',
+    minWidth: '120px',
+}
 
 
 
@@ -145,7 +158,7 @@ const ModalListImage = ({ imageID = 0 }) => {
                 <Fade in={isModalOpen}>
                     <Box sx={modalStyle}>
                         {/* <ModalNewImage /> */}
-                        <h2 id="parent-modal-title">*Liste des images*</h2>
+                        <h2 id="parent-modal-title">Liste des images</h2>
                         <div className='filter'>
                             <TextField
                                 id="outlined-basic"
@@ -158,15 +171,14 @@ const ModalListImage = ({ imageID = 0 }) => {
                             />
                         </div>
                         <Button onClick={() => { }}>NOUVELLE IMAGE</Button>
-                        <div sx={cardContainerStyle}>
+                        <div style={cardContainerStyle}>
                             {
                                 listImages.map(image => {
                                     return (
-                                        <Card key={image.id} sx={{ width: 250 }}>
+                                        <Card key={image.id} sx={cardStyle}>
                                             <CardActionArea>
                                                 <CardMedia
                                                     component="img"
-                                                    height="140"
                                                     image={image.IMG_uri}
                                                 />
                                                 <CardContent>
