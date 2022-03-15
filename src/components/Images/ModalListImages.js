@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
@@ -8,11 +8,13 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 
 import { ModalStyle } from '../../Utils/ModalStyle';
+import { getAllImages } from '../../services/imageApiService';
+import './images.css';
 
 // import ModalNewImage from './ModalNewImage';
-// import imageApiService, { getAllImages } from '../../services/imageApiService';
 
 
 
@@ -23,6 +25,7 @@ const modalStyle = {
     transform: 'translate(-50%, -50%)',
     width: '90%',
     maxWidth: 800,
+    maxHeight: "90vh",
     bgcolor: 'background.paper',
     border: '1px solid #111',
     borderRadius: 4,
@@ -34,18 +37,28 @@ const modalStyle = {
 
 
 
-const cardStyle = {
+const cardButtonStyle = {
     position: 'relative',
     margin: 'auto',
     marginBottom: 1,
     width: '30%',
     minWidth: 210,
-    maxWidth: 300,
+    maxWidth: 280,
 };
 
 
 
-const textStyle = {
+const imageButtonStyle = {
+    width: '100%',
+    height: '23vw',
+    maxHeight: 210,
+    minHeight: 160,
+    objectFit: 'cover !important',
+};
+
+
+
+const textButtonStyle = {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -67,13 +80,20 @@ const textStyle = {
 
 
 
-const imageStyle = {
-    width: "100%",
-    height: "23vw",
-    maxHeight: 250,
-    minHeight: 160,
-    objectFit: "cover !important",
+const cardContainerStyle = {
+    overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    maxHeight: '50vh',
 };
+
+
+
+const textStyle = {
+    textAlign: 'center',
+}
 
 
 
@@ -83,10 +103,19 @@ const imageStyle = {
  */
 const ModalListImage = ({ imageID = 0 }) => {
 
-    // const [images, setImages] = useState([]);
     // const [searchTerm, setSearchTerm] = useState('');
-    const [openedModal, setOpenedModal] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [listImages, setListImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(imageID);
+
+    useEffect(() => {
+        getAllImages()
+            .then(res => {
+                if (res.status === 200) {
+                    setListImages(res.data);
+                }
+            });
+    }, []);
 
     var imageURL;
 
@@ -97,49 +126,73 @@ const ModalListImage = ({ imageID = 0 }) => {
         imageURL = "https://via.placeholder.com/640x500.png/0077ff?text=accusamus";
     }
 
-    // imageApiService.getAllImages().then(res => {
-    //     if (res.status == 200) {
-    //         setImages(res.data);
-    //     }
-    // }).catch(err => {
-    //     console.log(err);
-    // });
-
     return (
         <div>
-            <Card sx={cardStyle}>
+            <Card sx={cardButtonStyle}>
                 <CardActionArea
-                    onClick={() => { setOpenedModal(true) }}
+                    onClick={() => { setIsModalOpen(true) }}
                 >
                     <CardMedia
                         component="img"
-                        sx={imageStyle}
+                        sx={imageButtonStyle}
                         // image="127.0.0.1:8000/img/icone image.svg"
                         image={imageURL}
                     />
                     <Typography
                         component="p"
-                        sx={textStyle}
+                        sx={textButtonStyle}
                     >
                         Choisir une image
                     </Typography>
                 </CardActionArea>
             </Card>
+
             <Modal
                 closeAfterTransition
-                open={openedModal}
-            // onClose={() => { setOpenedModal(false) }}
+                open={isModalOpen}
+            // onClose={() => { }}
             >
-                <Fade in={openedModal}>
+                <Fade in={isModalOpen}>
                     <Box sx={modalStyle}>
                         {/* <ModalNewImage /> */}
-                        <h2 id="parent-modal-title">*Liste des images*</h2>
-                        <p id="parent-modal-description">
-                            (Recherche) (ajouter une image)<br />
-                            (Liste des images)
-                        </p>
-                        <Button onClick={() => { setOpenedModal(false) }}>VALIDER</Button>
-                        <Button onClick={() => { setOpenedModal(false) }}>ANNULER</Button>
+                        <h2 id="parent-modal-title">Liste des images</h2>
+                        <div className='filter'>
+                            <TextField
+                                id="outlined-basic"
+                                label="Recherche"
+                                variant="outlined"
+                                type="text"
+                                name="search"
+                                size='small'
+                            // onChange={((e) => { setSearchTerm(e.target.value) })}
+                            />
+                        </div>
+                        <Button onClick={() => { }}>NOUVELLE IMAGE</Button>
+                        <div style={cardContainerStyle}>
+                            {
+                                listImages.map(image => {
+                                    return (
+                                        <Card key={image.id} className="modal-card">
+                                            <CardActionArea>
+                                                <CardMedia
+                                                    component="img"
+                                                    className="modal-card-image"
+                                                    image={image.IMG_uri}
+                                                />
+                                                <Typography
+                                                    className="modal-card-text"
+                                                    variant="subtitle2"
+                                                    component="div">
+                                                    {image.IMG_name}
+                                                </Typography>
+                                            </CardActionArea>
+                                        </Card>
+                                    )
+                                })
+                            }
+                        </div>
+                        <Button onClick={() => { setIsModalOpen(false) }}>VALIDER</Button>
+                        <Button onClick={() => { setIsModalOpen(false) }}>ANNULER</Button>
                     </Box>
                 </Fade>
             </Modal>
