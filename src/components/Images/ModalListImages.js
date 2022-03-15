@@ -38,13 +38,13 @@ const modalStyle = {
 
 
 
-const cardStyle = {
+const cardButtonStyle = {
     position: 'relative',
     margin: 'auto',
     marginBottom: 1,
     width: '30%',
     minWidth: 210,
-    maxWidth: 300,
+    maxWidth: 280,
 };
 
 
@@ -74,7 +74,7 @@ const textStyle = {
 const imageStyle = {
     width: "100%",
     height: "23vw",
-    maxHeight: 250,
+    maxHeight: 210,
     minHeight: 160,
     objectFit: "cover !important",
 };
@@ -118,7 +118,7 @@ const ModalListImage = ({ imageID = 0 }) => {
 
     return (
         <div>
-            <Card sx={cardStyle}>
+            <Card sx={cardButtonStyle}>
                 <CardActionArea
                     onClick={() => { setIsModalOpen(true) }}
                 >
