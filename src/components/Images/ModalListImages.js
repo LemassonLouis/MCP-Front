@@ -7,13 +7,12 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 import { ModalStyle } from '../../Utils/ModalStyle';
 import { getAllImages } from '../../services/imageApiService';
-
+import './images.css';
 
 // import ModalNewImage from './ModalNewImage';
 
@@ -49,7 +48,17 @@ const cardButtonStyle = {
 
 
 
-const textStyle = {
+const imageButtonStyle = {
+    width: '100%',
+    height: '23vw',
+    maxHeight: 210,
+    minHeight: 160,
+    objectFit: 'cover !important',
+};
+
+
+
+const textButtonStyle = {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -71,16 +80,6 @@ const textStyle = {
 
 
 
-const imageStyle = {
-    width: '100%',
-    height: '23vw',
-    maxHeight: 210,
-    minHeight: 160,
-    objectFit: 'cover !important',
-};
-
-
-
 const cardContainerStyle = {
     overflow: 'auto',
     display: 'flex',
@@ -92,10 +91,8 @@ const cardContainerStyle = {
 
 
 
-const cardStyle = {
-    width: '25%',
-    maxWidth: '150px',
-    minWidth: '120px',
+const textStyle = {
+    textAlign: 'center',
 }
 
 
@@ -137,13 +134,13 @@ const ModalListImage = ({ imageID = 0 }) => {
                 >
                     <CardMedia
                         component="img"
-                        sx={imageStyle}
+                        sx={imageButtonStyle}
                         // image="127.0.0.1:8000/img/icone image.svg"
                         image={imageURL}
                     />
                     <Typography
                         component="p"
-                        sx={textStyle}
+                        sx={textButtonStyle}
                     >
                         Choisir une image
                     </Typography>
@@ -175,17 +172,19 @@ const ModalListImage = ({ imageID = 0 }) => {
                             {
                                 listImages.map(image => {
                                     return (
-                                        <Card key={image.id} sx={cardStyle}>
+                                        <Card key={image.id} className="modal-card">
                                             <CardActionArea>
                                                 <CardMedia
                                                     component="img"
+                                                    className="modal-card-image"
                                                     image={image.IMG_uri}
                                                 />
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="h6" component="div">
-                                                        {image.IMG_name}
-                                                    </Typography>
-                                                </CardContent>
+                                                <Typography
+                                                    className="modal-card-text"
+                                                    variant="subtitle2"
+                                                    component="div">
+                                                    {image.IMG_name}
+                                                </Typography>
                                             </CardActionArea>
                                         </Card>
                                     )
