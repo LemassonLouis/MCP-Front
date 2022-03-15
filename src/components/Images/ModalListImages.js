@@ -81,7 +81,7 @@ const imageStyle = {
  * Component ModalListImage, display a button and show modal by clicking on it.
  * @returns {React.HTML} REACT.HTML
  */
-const ModalListImage = ({ imageID }) => {
+const ModalListImage = ({ imageID = 0 }) => {
 
     // const [images, setImages] = useState([]);
     // const [searchTerm, setSearchTerm] = useState('');
