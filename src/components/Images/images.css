@@ -51,7 +51,7 @@
 
 .ListImages-modal-title {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 20pt;
     font-weight: 600;
     text-align: center;
@@ -64,6 +64,8 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     max-height: 50vh;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .ListImages-modal-card {
@@ -92,7 +94,6 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 100%;
-    margin-top: 10px;
 }
 
 .ListImages-modal-button {

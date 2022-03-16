@@ -26,12 +26,10 @@ const modalStyle = {
     width: '90%',
     maxWidth: 800,
     maxHeight: "90vh",
+    padding: '15px 30px',
     bgcolor: 'background.paper',
     borderRadius: 4,
     boxShadow: 10,
-    pt: 2,
-    px: 4,
-    pb: 3,
 };
 
 
