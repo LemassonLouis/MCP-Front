@@ -37,38 +37,6 @@ const modalStyle = {
 
 
 
-const cardButtonStyle = {
-    position: 'relative',
-    margin: 'auto',
-    marginBottom: '20px',
-    width: '30%',
-    minWidth: 210,
-    maxWidth: 280,
-};
-
-
-
-const imageButtonStyle = {
-    width: '100%',
-    height: '23vw',
-    maxHeight: 210,
-    minHeight: 160,
-    objectFit: 'cover !important',
-};
-
-
-
-const cardContainerStyle = {
-    overflow: 'auto',
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-    maxHeight: '50vh',
-};
-
-
-
 /**
  * Component ModalListImage, display a button and show modal by clicking on it.
  * @returns {React.HTML} REACT.HTML
@@ -100,13 +68,13 @@ const ModalListImage = ({ imageID = 0 }) => {
 
     return (
         <div>
-            <Card sx={cardButtonStyle}>
+            <Card className="button-modal">
                 <CardActionArea
                     onClick={() => { setIsModalOpen(true) }}
                 >
                     <CardMedia
                         component="img"
-                        sx={imageButtonStyle}
+                        className="button-modal-image"
                         // image="127.0.0.1:8000/img/icone image.svg"
                         image={imageURL}
                     />
@@ -140,7 +108,7 @@ const ModalListImage = ({ imageID = 0 }) => {
                             />
                         </div>
                         <Button onClick={() => { }}>NOUVELLE IMAGE</Button>
-                        <div style={cardContainerStyle}>
+                        <div className="modal-container-card">
                             {
                                 listImages.map(image => {
                                     return (
