@@ -24,27 +24,27 @@ export function getAllImages() {
   });
 }
 
-// export function getImage(imageID) {
+export function getImage(imageID) {
 
-//   console.log("getImage()", mcpApiEndpoint + "images" + imageID);
+  console.log("getImage()", mcpApiEndpoint + "images" + "/" + imageID);
 
-//   return new Promise(function (resolve, reject) {
-//     axios
-//       .get(mcpApiEndpoint + "images" + "/" + imageID, {
-//         headers: {
-//           Accept: "application/json",
-//         },
-//       })
-//       .then(function (res) {
-//         console.log("getImage() / res", res);
-//         return resolve(res);
-//       })
-//       .catch(function (err) {
-//         console.log("getImage() / err", err);
-//         return reject(err);
-//       });
-//   });
-// }
+  return new Promise(function (resolve, reject) {
+    axios
+      .get(mcpApiEndpoint + "images" + "/" + imageID, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then(function (res) {
+        console.log("getImage() / res", res);
+        return resolve(res);
+      })
+      .catch(function (err) {
+        console.log("getImage() / err", err);
+        return reject(err);
+      });
+  });
+}
 
 // export function postImage(image) {
 

@@ -60,7 +60,7 @@ const AddIngredient = () => {
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
-                <ModalListImage />
+                <ModalListImage imageID="1" />
                 <TextField
                     required
                     id="outlined-basic"

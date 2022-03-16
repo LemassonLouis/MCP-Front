@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 import { ModalStyle } from '../../Utils/ModalStyle';
-import { getAllImages } from '../../services/imageApiService';
+import { getAllImages, getImage } from '../../services/imageApiService';
 import './images.css';
 
 // import ModalNewImage from './ModalNewImage';
@@ -43,7 +43,7 @@ const ModalListImage = ({ imageID = 0 }) => {
     // const [searchTerm, setSearchTerm] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [listImages, setListImages] = useState([]);
-    const [selectedImage, setSelectedImage] = useState(imageID);
+    const [selectedImage, setSelectedImage] = useState([]);
 
     useEffect(() => {
         getAllImages()
@@ -54,14 +54,20 @@ const ModalListImage = ({ imageID = 0 }) => {
             });
     }, []);
 
-    var imageURL;
-
-    if (selectedImage == 0) {
-        imageURL = "https://via.placeholder.com/500x500.png?text=NONE";
-    }
-    else {
-        imageURL = "https://via.placeholder.com/640x500.png/0077ff?text=accusamus";
-    }
+    useEffect(() => {
+        if (imageID > 0) {
+            getImage(imageID)
+                .then(res => {
+                    if (res.status === 200) {
+                        console.log(res.data);
+                        setSelectedImage = res.data;
+                    }
+                });
+        }
+        else {
+            // imageURL = "https://via.placeholder.com/500x500.png?text=NONE";
+        }
+    }, []);
 
     return (
         <div>
@@ -72,8 +78,8 @@ const ModalListImage = ({ imageID = 0 }) => {
                     <CardMedia
                         component="img"
                         className="ListImages-button-modal-image"
-                        // image="127.0.0.1:8000/img/icone image.svg"
-                        image={imageURL}
+                    // image="127.0.0.1:8000/img/icone image.svg"
+                    // image={imageURL}
                     />
                     <Typography
                         component="div"
