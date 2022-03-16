@@ -134,8 +134,17 @@ const ModalListImage = ({ imageID = 0 }) => {
                                 })
                             }
                         </div>
-                        <Button onClick={() => { setIsModalOpen(false) }}>VALIDER</Button>
-                        <Button onClick={() => { setIsModalOpen(false) }}>ANNULER</Button>
+                        <div className="ListImages-modal-container-button">
+                            <Button
+                                className="ListImages-modal-button"
+                                onClick={() => { setIsModalOpen(false) }}
+                            >VALIDER</Button>
+                            <Button
+                                className="ListImages-modal-button"
+                                onClick={() => { setIsModalOpen(false) }}
+                            >ANNULER</Button>
+                        </div>
+
                     </Box>
                 </Fade>
             </Modal>
