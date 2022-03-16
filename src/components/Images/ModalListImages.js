@@ -40,7 +40,7 @@ const modalStyle = {
 const cardButtonStyle = {
     position: 'relative',
     margin: 'auto',
-    marginBottom: 1,
+    marginBottom: '20px',
     width: '30%',
     minWidth: 210,
     maxWidth: 280,
@@ -58,28 +58,6 @@ const imageButtonStyle = {
 
 
 
-const textButtonStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    fontSize: '15pt',
-    color: 'white',
-    textTransform: 'uppercase',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    opacity: 0,
-    transition: '0.3s',
-    '&:hover': {
-        opacity: 1,
-    }
-};
-
-
-
 const cardContainerStyle = {
     overflow: 'auto',
     display: 'flex',
@@ -88,12 +66,6 @@ const cardContainerStyle = {
     justifyContent: 'space-evenly',
     maxHeight: '50vh',
 };
-
-
-
-const textStyle = {
-    textAlign: 'center',
-}
 
 
 
@@ -139,8 +111,8 @@ const ModalListImage = ({ imageID = 0 }) => {
                         image={imageURL}
                     />
                     <Typography
-                        component="p"
-                        sx={textButtonStyle}
+                        component="div"
+                        className="button-modal-hover"
                     >
                         Choisir une image
                     </Typography>
@@ -179,6 +151,12 @@ const ModalListImage = ({ imageID = 0 }) => {
                                                     className="modal-card-image"
                                                     image={image.IMG_uri}
                                                 />
+                                                <Typography
+                                                    component="div"
+                                                    className="modal-card-hover"
+                                                >
+                                                    Sélectionner
+                                                </Typography>
                                                 <Typography
                                                     className="modal-card-text"
                                                     variant="subtitle2"
