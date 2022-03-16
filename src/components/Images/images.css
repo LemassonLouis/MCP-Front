@@ -49,6 +49,14 @@
 
 
 
+.ListImages-modal-title {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 20pt;
+    font-weight: 600;
+    text-align: center;
+}
+
 .ListImages-modal-container-card {
     overflow: auto;
     display: flex;

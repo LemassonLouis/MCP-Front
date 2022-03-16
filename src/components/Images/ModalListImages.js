@@ -94,7 +94,7 @@ const ModalListImage = ({ imageID = 0 }) => {
                 <Fade in={isModalOpen}>
                     <Box sx={modalStyle}>
                         {/* <ModalNewImage /> */}
-                        <h2 id="parent-modal-title">Liste des images</h2>
+                        <div className="ListImages-modal-title">Liste des images</div>
                         <div className='filter'>
                             <TextField
                                 id="outlined-basic"
