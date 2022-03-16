@@ -27,7 +27,6 @@ const modalStyle = {
     maxWidth: 800,
     maxHeight: "90vh",
     bgcolor: 'background.paper',
-    border: '1px solid #111',
     borderRadius: 4,
     boxShadow: 10,
     pt: 2,
