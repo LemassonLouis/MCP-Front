@@ -93,7 +93,6 @@ const ModalListImage = ({ imageID = 0 }) => {
             >
                 <Fade in={isModalOpen}>
                     <Box sx={modalStyle}>
-                        {/* <ModalNewImage /> */}
                         <div className="ListImages-modal-title">Liste des images</div>
                         <div className='filter'>
                             <TextField
@@ -106,7 +105,6 @@ const ModalListImage = ({ imageID = 0 }) => {
                             // onChange={((e) => { setSearchTerm(e.target.value) })}
                             />
                         </div>
-                        <Button onClick={() => { }}>NOUVELLE IMAGE</Button>
                         <div className="ListImages-modal-container-card">
                             {
                                 listImages.map(image => {
