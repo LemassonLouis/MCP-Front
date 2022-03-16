@@ -67,19 +67,19 @@ const ModalListImage = ({ imageID = 0 }) => {
 
     return (
         <div>
-            <Card className="button-modal">
+            <Card className="ListImages-button-modal">
                 <CardActionArea
                     onClick={() => { setIsModalOpen(true) }}
                 >
                     <CardMedia
                         component="img"
-                        className="button-modal-image"
+                        className="ListImages-button-modal-image"
                         // image="127.0.0.1:8000/img/icone image.svg"
                         image={imageURL}
                     />
                     <Typography
                         component="div"
-                        className="button-modal-hover"
+                        className="ListImages-button-modal-hover"
                     >
                         Choisir une image
                     </Typography>
@@ -107,25 +107,25 @@ const ModalListImage = ({ imageID = 0 }) => {
                             />
                         </div>
                         <Button onClick={() => { }}>NOUVELLE IMAGE</Button>
-                        <div className="modal-container-card">
+                        <div className="ListImages-modal-container-card">
                             {
                                 listImages.map(image => {
                                     return (
-                                        <Card key={image.id} className="modal-card">
+                                        <Card key={image.id} className="ListImages-modal-card">
                                             <CardActionArea>
                                                 <CardMedia
                                                     component="img"
-                                                    className="modal-card-image"
+                                                    className="ListImages-modal-card-image"
                                                     image={image.IMG_uri}
                                                 />
                                                 <Typography
                                                     component="div"
-                                                    className="modal-card-hover"
+                                                    className="ListImages-modal-card-hover"
                                                 >
                                                     Sélectionner
                                                 </Typography>
                                                 <Typography
-                                                    className="modal-card-text"
+                                                    className="ListImages-modal-card-text"
                                                     variant="subtitle2"
                                                     component="div">
                                                     {image.IMG_name}

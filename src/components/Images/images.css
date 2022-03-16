@@ -1,4 +1,4 @@
-.button-modal {
+.ListImages-button-modal {
     position: relative;
     margin: auto;
     margin-bottom: 20px;
@@ -7,7 +7,7 @@
     max-width: 280px;
 }
 
-.button-modal-image {
+.ListImages-button-modal-image {
     width: 100%;
     height: 23vw;
     max-height: 210px;
@@ -18,7 +18,7 @@
 
 
 
-.button-modal-hover, .modal-card-hover {
+.ListImages-button-modal-hover, .ListImages-modal-card-hover {
     position: absolute;
     top: 0;
     left: 0;
@@ -34,22 +34,22 @@
     transition: 0.3s;
 }
 
-.button-modal-hover:hover, .modal-card-hover:hover {
+.ListImages-button-modal-hover:hover, .ListImages-modal-card-hover:hover {
     opacity: 1;
 }
 
-.button-modal-hover {
+.ListImages-button-modal-hover {
     font-size: clamp(12pt, 2.3vw, 18pt) !important;
 }
 
-.modal-card-hover {
+.ListImages-modal-card-hover {
     font-size: clamp(9pt, 2vw, 13pt) !important;
 }
 
 
 
 
-.modal-container-card {
+.ListImages-modal-container-card {
     overflow: auto;
     display: flex;
     flex-direction: row;
@@ -58,13 +58,13 @@
     max-height: 50vh;
 }
 
-.modal-card {
+.ListImages-modal-card {
     width: 25%;
     max-width: 170px;
     min-width: 130px;
 }
 
-.modal-card-image {
+.ListImages-modal-card-image {
     width: 100%;
     height: 16vw;
     max-height: 120px;
@@ -72,7 +72,7 @@
     object-fit: cover !important;
 }
 
-.modal-card-text {
+.ListImages-modal-card-text {
     padding: 10px;
     line-height: 1 !important;
     text-align: center;
