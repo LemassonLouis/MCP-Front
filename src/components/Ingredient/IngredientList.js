@@ -3,17 +3,22 @@ import {Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/ma
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import {getAllIngredients} from '../../services/ingredientApiService';
+import Lottie from "lottie-react";
+import cookingLottie from "../../Utils/Lottie/cookingLottie.json";
+
 
 const IngredientList = ({searchTerm}) => {
 
     
     const navigate = useNavigate();
-
+    const [lottieState, setLottieState] = useState(false);
     const [ingredientsState, setIngredientsState] = useState([]);
 
     useEffect(() => {
+        setLottieState(true);
         getAllIngredients().then((res) => {
             if (res.status === 200) {
+                setLottieState(false);
                 setIngredientsState(res.data);
             }
         })
@@ -26,8 +31,8 @@ const IngredientList = ({searchTerm}) => {
     return (
         <>  
             <div className='card'>
+            {lottieState && <Lottie animationData={cookingLottie}/>}
             {
-
                 /*******Search function************/
 
                 ingredientsState.filter((i) => {
