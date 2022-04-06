@@ -38,7 +38,7 @@ const SelectedIngredient = () => {
             <br />
             <br />
             <LoadingButton className='webapp-layout__desktop--btn' loading={load} color="error" variant="contained" onClick={() => sendRemoveIngredient()}>Supprimer</LoadingButton>
-            <FooterResponsiveBtn color="error" load={load} txt="Supprimer"/>
+            <FooterResponsiveBtn func={() => sendRemoveIngredient()} color="error" load={load} txt="Supprimer"/>
         </div>
     );
 };
