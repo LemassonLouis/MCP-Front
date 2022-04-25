@@ -2,49 +2,49 @@ import axios from "axios";
 
 const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
 
-export function getAllImages() {
+// export function getAllImages() {
 
-  console.log("getAllImages()", mcpApiEndpoint + "images");
-
-  return new Promise(function (resolve, reject) {
-    axios
-      .get(mcpApiEndpoint + "images", {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-      .then(function (res) {
-        console.log("getAllImages() / res", res);
-        return resolve(res);
-      })
-      .catch(function (err) {
-        console.log("getAllImages() / err", err);
-        return reject(err);
-      });
-  });
-}
-
-// export function getImage(imageID) {
-
-//   console.log("getImage()", mcpApiEndpoint + "images" + imageID);
+//   console.log("getAllImages()", mcpApiEndpoint + "images");
 
 //   return new Promise(function (resolve, reject) {
 //     axios
-//       .get(mcpApiEndpoint + "images" + "/" + imageID, {
+//       .get(mcpApiEndpoint + "images", {
 //         headers: {
 //           Accept: "application/json",
 //         },
 //       })
 //       .then(function (res) {
-//         console.log("getImage() / res", res);
+//         console.log("getAllImages() / res", res);
 //         return resolve(res);
 //       })
 //       .catch(function (err) {
-//         console.log("getImage() / err", err);
+//         console.log("getAllImages() / err", err);
 //         return reject(err);
 //       });
 //   });
 // }
+
+export function getImage(imageID) {
+
+  console.log("getImage()", mcpApiEndpoint + "images" + "/" + imageID);
+
+  return new Promise(function (resolve, reject) {
+    axios
+      .get(mcpApiEndpoint + "images" + "/" + imageID, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then(function (res) {
+        console.log("getImage() / res", res);
+        return resolve(res);
+      })
+      .catch(function (err) {
+        console.log("getImage() / err", err);
+        return reject(err);
+      });
+  });
+}
 
 // export function postImage(image) {
 

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
+import { getImage } from '../../services/imageApiService';
 import './ChooseImage.css';
 
 
@@ -13,33 +14,31 @@ const Input = styled('input')({
 
 /**
  * Component ChooseImage, display an image who is a file, type image, input.
+ * @param {Number} [imageID] - Int who define the image to show.
+ * - Default = 0 | Show the default "none" image. 
  * @returns {React.HTML} REACT.HTML
  */
-const ChooseImage = (/*{ imageID = 0 }*/) => {
+const ChooseImage = ({ imageID = undefined }) => {
 
     function handleChange(event) {
         setImageURL(event.target.value);
-        // error : Not allowed to load local resource: file:///C:/%C3%BAkepath%0Brigitte_by_liang_xing_40x30.jpg
+        // error : "Not allowed to load local resource: file:///C:/%C3%BAkepath%0Brigitte_by_liang_xing_40x30.jpg"
         // just need to check my notification from https://stackoverflow.com/questions/71770607/react-not-allowed-to-load-local-resource
     }
 
     const [imageURL, setImageURL] = useState('https://via.placeholder.com/500x500.png?text=NONE');
 
-    // useEffect(() => {
-    //     getAllImages()
-    //         .then(res => {
-    //             if (res.status === 200) {
-    //                 setListImages(res.data);
-    //             }
-    //         });
-    // }, []);
+    useEffect(() => {
+        if (imageID != undefined && imageID != null) {
+            getImage(imageID)
+                .then(res => {
+                    if (res.status === 200) {
+                        setImageURL(res.data.IMG_uri);
+                    }
+                });
+        }
+    }, []);
 
-    // if (selectedImage == 0) {
-    //     imageURL = "https://via.placeholder.com/500x500.png?text=NONE";
-    // }
-    // else {
-    //     imageURL = "https://via.placeholder.com/640x500.png/0077ff?text=accusamus";
-    // }
 
     return (
         <div className='ChooseImage-button' style={{
