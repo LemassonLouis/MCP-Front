@@ -1,3 +1,5 @@
+import Button from '@mui/material/Button';
+
 /**
  * Component ChooseImage, display a button ImageFile.
  * @returns {React.HTML} REACT.HTML
@@ -24,7 +26,16 @@ const ChooseImage = (/*{ imageID = 0 }*/) => {
 
     return (
         <div>
-            Mon bouton choisir une image
+            <Button
+                variant="contained"
+                component="label"
+            >
+                Upload File
+                <input
+                    type="file"
+                    hidden
+                />
+            </Button>
         </div>
     );
 }
