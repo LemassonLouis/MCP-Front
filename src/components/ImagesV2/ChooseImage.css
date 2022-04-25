@@ -15,8 +15,6 @@
     background-repeat: no-repeat;
 }
 
-.ChooseImage-button-input {}
-
 .ChooseImage-button-hover {
     display: flex;
     align-items: center;
