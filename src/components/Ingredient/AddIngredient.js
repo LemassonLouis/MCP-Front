@@ -9,7 +9,8 @@ import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
 import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
 import '../Common/Footer/FooterResponsiveBtn.css';
 import { postIngredient } from '../../services/ingredientApiService';
-import ModalListImage from '../Images/ModalListImages';
+import ChooseImage from '../ImagesV2/ChooseImage';
+
 
 
 const AddIngredient = () => {
@@ -60,7 +61,7 @@ const AddIngredient = () => {
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
-                <ModalListImage />
+                <ChooseImage />
                 <TextField
                     required
                     id="outlined-basic"
