@@ -12,7 +12,7 @@ const Input = styled('input')({
 });
 
 
-const ChooseImage = ({ imageID = undefined }, ref) => {
+const ChooseImage = ({ imgID = undefined }, ref) => {
 
     /**
      * Method of the component that can be accessible from the parent.
@@ -35,6 +35,7 @@ const ChooseImage = ({ imageID = undefined }, ref) => {
     }
 
     const [imageURL, setImageURL] = useState('https://via.placeholder.com/500x500.png?text=NONE');
+    const [imageID, setImageID] = useState(imgID);
 
     useEffect(() => {
         if (imageID != undefined && imageID != null) {
@@ -71,14 +72,14 @@ const ChooseImage = ({ imageID = undefined }, ref) => {
 
 
 /**
- * Component ChooseImage, display an image who is a file, type image, input.
+ * Component ChooseImage, display an image who is a file input who allowed images only.
  * - **In the parent create `const <refName> = useRef()`**
  * - **Call the component with `<ChooseImage ref={refName} />`**
  * - **Use method with `<refName>.current.<method>`**
  * -- Methods available :
  * - addImage()
  * - removeImage()
- * @param {Number} [imageID] - Int who define the image to show if an image was already set.
+ * @param {Number} [imgID] - Int who define the image to show if an image was already set.
  * @param {import('react').Ref} refName - The ref `const <refName> = useRef()` created in the parent component.
  * @returns {React.HTML} REACT.HTML
  */

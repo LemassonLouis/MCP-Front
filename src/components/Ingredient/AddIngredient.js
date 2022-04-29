@@ -63,7 +63,7 @@ const AddIngredient = () => {
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
-                <ChooseImage /*imageID="10"*/ ref={refCompImage} />
+                <ChooseImage /*imgID="10"*/ ref={refCompImage} />
                 <TextField
                     required
                     id="outlined-basic"
