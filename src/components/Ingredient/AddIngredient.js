@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BasicDateRangePicker from '../BasicDateRangePicker/BasicDateRangePicker';
@@ -14,6 +14,8 @@ import ChooseImage from '../ImagesV2/ChooseImage';
 
 
 const AddIngredient = () => {
+
+    const refCompImage = useRef();
 
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
@@ -61,7 +63,7 @@ const AddIngredient = () => {
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
-                <ChooseImage /*imageID="10"*/ />
+                <ChooseImage /*imageID="10"*/ ref={refCompImage} />
                 <TextField
                     required
                     id="outlined-basic"
