@@ -11,18 +11,18 @@ export function getImage(imageID) {
 
   console.log("getImage()", mcpApiEndpoint + "images" + "/" + imageID);
 
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     axios
       .get(mcpApiEndpoint + "images" + "/" + imageID, {
         headers: {
           Accept: "application/json",
         },
       })
-      .then(function (res) {
+      .then(res => {
         console.log("getImage() / res", res);
         return resolve(res);
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log("getImage() / err", err);
         return reject(err);
       });
@@ -40,7 +40,7 @@ export function postImage(imageURL) {
   console.log("postImage()", mcpApiEndpoint + "images");
   console.log("imageURL", imageURL);
 
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
 
     const data = {
       iMGUri: imageURL
@@ -52,11 +52,11 @@ export function postImage(imageURL) {
           Accept: "application/json",
         },
       })
-      .then(function (res) {
+      .then(res => {
         console.log("postImage() / res", res);
         return resolve(res);
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log("postImage() / err", err);
         return reject(err);
       });
@@ -73,18 +73,18 @@ export function removeImage(imageID) {
 
   console.log("removeImage()", mcpApiEndpoint + "images" + "/" + imageID);
 
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     axios
       .delete(mcpApiEndpoint + "images" + "/" + imageID, {
         headers: {
           Accept: "application/json",
         },
       })
-      .then(function (res) {
+      .then(res => {
         console.log("removeImage() / res", res);
         return resolve(res);
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log("removeImage() / err", err);
         return reject(err);
       });
