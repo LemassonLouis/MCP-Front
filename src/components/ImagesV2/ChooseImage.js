@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
@@ -18,13 +18,23 @@ const Input = styled('input')({
  * - Default = 0 | Show the default "none" image. 
  * @returns {React.HTML} REACT.HTML
  */
-const ChooseImage = ({ imageID = undefined }) => {
+const ChooseImage = ({ imageID = undefined }, ref) => {
 
     function handleChange(event) {
         setImageURL(event.target.value);
         // error : "Not allowed to load local resource: file:///C:/%C3%BAkepath%0Brigitte_by_liang_xing_40x30.jpg"
         // just need to check my notification from https://stackoverflow.com/questions/71770607/react-not-allowed-to-load-local-resource
     }
+
+    useImperativeHandle(ref, () => ({
+        addImage() {
+            console.log("add an image : post it to the API and get the img id");
+            return "imageID";
+        },
+        removeImage() {
+            console.log("remove an image : delete the image on the API");
+        }
+    }));
 
     const [imageURL, setImageURL] = useState('https://via.placeholder.com/500x500.png?text=NONE');
 
@@ -61,4 +71,4 @@ const ChooseImage = ({ imageID = undefined }) => {
     );
 }
 
-export default ChooseImage;
+export default forwardRef(ChooseImage);
