@@ -69,9 +69,9 @@ export function postImage(imageURL) {
  * @param {Number} imageID - Int who define the id of the image.
  * @returns {Promise} Promise.req
  */
-export function removeImage(imageID) {
+export function deleteImage(imageID) {
 
-  console.log("removeImage()", mcpApiEndpoint + "images" + "/" + imageID);
+  console.log("deleteImage()", mcpApiEndpoint + "images" + "/" + imageID);
 
   return new Promise((resolve, reject) => {
     axios
@@ -81,11 +81,11 @@ export function removeImage(imageID) {
         },
       })
       .then(res => {
-        console.log("removeImage() / res", res);
+        console.log("deleteImage() / res", res);
         return resolve(res);
       })
       .catch(err => {
-        console.log("removeImage() / err", err);
+        console.log("deleteImage() / err", err);
         return reject(err);
       });
   });
