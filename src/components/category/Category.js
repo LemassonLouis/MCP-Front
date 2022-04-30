@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import NavBar from "../Common/NavBar/NavBar";
 
 const Category = ({ onClick }) => {
   const [categoriesState, setCategoriesState] = useState([]);
@@ -76,6 +77,7 @@ const Category = ({ onClick }) => {
           );
         })}
       </div>
+      <NavBar />
     </>
   );
 };

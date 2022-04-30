@@ -63,13 +63,13 @@ const Supplier = ({ onClick }) => {
         {suppliersState.map((e) => {
           return (
             <>
-              <div className="uniqueCard" key={e.id}>
+              <div className="uniqueCard" key={e.name}>
                 <Card sx={{ maxWidth: 350 }}>
                   <CardContent>
                     <Typography
                       component="div"
                       variant="h5"
-                      color="text.secondary"
+                      color="text.primary"
                     >
                       {e.SUP_name}
                     </Typography>
@@ -79,6 +79,13 @@ const Supplier = ({ onClick }) => {
                       color="text.secondary"
                     >
                       {e.SUP_city}
+                    </Typography>
+                    <Typography
+                      component="div"
+                      variant="h6"
+                      color="text.secondary"
+                    >
+                      {e.SUP_zipCode}
                     </Typography>
                     <Typography
                       component="div"
