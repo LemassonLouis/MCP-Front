@@ -1,3 +1,10 @@
+/**
+ * @author Kevin Clément
+ * @email kevin-clement@live.fr
+ * @create date 2022-04-25 20:27:55
+ * @modify date 2022-04-25 20:27:56
+ * @desc [description]
+ */
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({

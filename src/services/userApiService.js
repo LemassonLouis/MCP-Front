@@ -1,3 +1,10 @@
+/**
+ * @author Kevin Clément
+ * @email kevin-clement@live.fr
+ * @create date 2022-04-25 20:27:31
+ * @modify date 2022-04-25 20:27:34
+ * @desc [description]
+ */
 import axios from "axios";
 import getJWTHeader from "./token";
 

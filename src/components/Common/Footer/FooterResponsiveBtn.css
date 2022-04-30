@@ -1,3 +1,10 @@
+/**
+ * @author Kevin Clément
+ * @email kevin-clement@live.fr
+ * @create date 2022-04-25 20:23:01
+ * @modify date 2022-04-25 20:39:47
+ * @desc [description]
+ */
 .footer-responsive
 {
     position: fixed;
@@ -28,7 +35,7 @@
 @media screen and (max-width:767px) {
 
     .footer-responsive{
-        display: inherit;
+        display: flow-root;
     }
     .webapp-layout__desktop--btn{
         display: none !important;
