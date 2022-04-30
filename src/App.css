@@ -11,6 +11,7 @@
   justify-content: center;
 }
 
+
 /**TEST**/
 .card {
   display: flex;
@@ -30,8 +31,15 @@
 
 .filter {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 330px;
+}
+
+.ingredient-lottie{
+  z-index: 99999;
+  position: absolute;
 }
 
 .onSort {

@@ -23,6 +23,7 @@ import EditProfile from "./components/Profile/EditProfile";
 import EditPwd from "./components/Profile/EditPwd";
 import SelectedSupplier from "./components/Supplier/SelectedSupplier";
 import AddSupplier from "./components/Supplier/AddSupplier";
+import UsersList from "./components/Admin/UsersList";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -84,6 +85,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <EditPwd />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/admin/users"
+                element={
+                  <PrivateRoute>
+                    <UsersList />
                   </PrivateRoute>
                 }
               />
