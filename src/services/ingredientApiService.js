@@ -1,15 +1,23 @@
+/**
+ * @author Kevin Clément
+ * @email kevin-clement@live.fr
+ * @create date 2022-04-25 20:26:29
+ * @modify date 2022-04-26 21:34:00
+ * @desc [description]
+ */
 import axios from "axios";
 
 const INGREDIENTS = process.env.REACT_APP_INGREDIENTS;
 
 const TAG = "ingredients"
 
-export function getAllIngredients() {
+export function getAllIngredients({vege, allergen}) {
   console.log("getAll" + TAG);
-  console.log(INGREDIENTS)
+
+  console.log(INGREDIENTS + `?ING_vege=${vege}&ING_allergen=${allergen}`)
   return new Promise(function (resolve, reject) {
     axios
-      .get(INGREDIENTS, {
+      .get(INGREDIENTS + `?ING_vege=${vege}&ING_allergen=${allergen}`, {
         headers: {
           Accept: "application/json",
         },
@@ -51,6 +59,36 @@ export function postIngredient(ingredient) {
       })
       .catch(function (err) {
         console.log("post" + TAG, err);
+        return reject(err);
+      });
+  });
+}
+
+export function editIngredient(ingredient, id) {
+  console.log(ingredient);
+  console.log("put" + TAG);
+  console.log(INGREDIENTS + "/" + id);
+  return new Promise(function (resolve, reject) {
+    const data = {
+      iNGName: ingredient.name,
+      iNGAllergen: ingredient.allergen,
+      iNGVege: ingredient.vege,
+      iNGUnit: ingredient.unit,
+      iNGPrice: ingredient.price,
+      iNGIsArchive: ingredient.archive,
+    };
+    axios
+      .put(INGREDIENTS + "/" + id, data, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then(function (res) {
+        console.log("put" + TAG, res);
+        return resolve(res);
+      })
+      .catch(function (err) {
+        console.log("put" + TAG, err);
         return reject(err);
       });
   });
