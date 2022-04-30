@@ -31,7 +31,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
     const defaultIMG = "https://via.placeholder.com/500x500.png?text=NONE";
 
     const [image, setImage] = useState({ id: imgID, URI: defaultIMG });
-    const [inputURI, setInputURI] = useState('');
+    const [inputURI, setInputURI] = useState(defaultIMG);
 
     useEffect(() => {
         if (imgID != undefined && imgID != null) {
@@ -47,7 +47,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
 
 
     return (
-        <div>
+        <div className='ChooseImage'>
             <div className='ChooseImage-button' style={{
                 backgroundImage: `url(${inputURI})`
             }}>

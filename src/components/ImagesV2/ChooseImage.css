@@ -1,7 +1,10 @@
+.ChooseImage {
+    margin-bottom: 20px;
+}
+
 .ChooseImage-button {
     overflow: hidden;
     margin: auto;
-    margin-bottom: 20px !important;
     width: 30%;
     min-width: 210px !important;
     max-width: 280px;
