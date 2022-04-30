@@ -1,0 +1,53 @@
+/**
+ * @author Kevin Clément
+ * @email kevin-clement@live.fr
+ * @create date 2022-04-25 20:20:33
+ * @modify date 2022-04-25 20:21:56
+ * @desc [description]
+ */
+.webapp-card__usersList{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    border-radius: 10px;
+    height: 85px;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 2px 2px 7px 4px rgb(0 0 0 / 5%);
+    cursor: pointer;
+}
+
+.webapp-card__usersList > .card-column{
+    text-align: start;
+}
+
+.content-lottie{
+    margin: auto;
+    height: 300px;
+    width: 300px;
+}
+
+.card-column p {
+    color: rgb(184, 184, 184);
+    font-weight: 400;
+}
+
+.webapp-card__usersList > .role-badge{
+    border-radius: 5px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: #fff;
+    background-color: #F7A154;
+}
+
+
+@media screen and (min-width:768px) {
+
+    .webapp-card__usersList{
+        margin: 15px auto;
+        max-width: 600px;
+    }
+
+}
