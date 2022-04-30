@@ -41,6 +41,9 @@ const AddIngredient = () => {
     const sendIngredient = (e) => {
         e.preventDefault();
         setLoad(true);
+
+        const imageID = refCompImage.current.doChanges();
+
         let ingredient = {
             name: inputs.name,
             price: parseInt(inputs.price),

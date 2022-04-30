@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { getImage } from '../../services/imageApiService';
+import { deleteImage, getImage, postImage } from '../../services/imageApiService';
 import './ChooseImage.css';
 
 
@@ -16,21 +16,9 @@ const Input = styled('input')({
 
 const ChooseImage = ({ imgID = undefined }, ref) => {
 
-    /**
-     * Method of the component that can be accessible from the parent.
-     */
-    useImperativeHandle(ref, () => ({
-        addImage() {
-            console.log("add an image : post it to the API and get the img id");
-            return "imageID";
-        },
-        removeImage() {
-            console.log("remove an image : delete the image on the API");
-        }
-    }));
     const defaultIMG = "https://via.placeholder.com/500x500.png?text=NONE";
 
-    const [image, setImage] = useState({ id: imgID, URI: defaultIMG });
+    const [image, setImage] = useState({ id: undefined, URI: undefined });
     const [inputURI, setInputURI] = useState(defaultIMG);
 
     useEffect(() => {
@@ -44,6 +32,30 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
                 });
         }
     }, []);
+
+
+    /**
+     * Method of the component that can be accessible from the parent.
+     */
+    useImperativeHandle(ref, () => ({
+        doChanges() {
+            if (image.URI != inputURI) {
+
+                if (image.URI != undefined) {
+                    deleteImage(image.id).then(req => console.log("image removed / req", req));
+                }
+
+                if (inputURI != defaultIMG) {
+                    postImage(inputURI).then(req => {
+                        console.log("image add / req", req);
+                        return req.data.id;
+                    });
+                }
+            }
+
+            return null;
+        }
+    }));
 
 
     return (
@@ -87,8 +99,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
  * - **Call the component with `<ChooseImage ref={refName} />`**
  * - **Use method with `<refName>.current.<method>`**
  * -- Methods available :
- * - addImage()
- * - removeImage()
+ * - doChanges() : imgID | null. *return imgID if a change need a post to the API or return null in the other cases.*
  * @param {Number} [imgID] - Int who define the image to show if an image was already set.
  * @param {import('react').Ref} refName - The ref `const <refName> = useRef()` created in the parent component.
  * @returns {React.HTML} REACT.HTML
