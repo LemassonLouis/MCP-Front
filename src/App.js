@@ -24,6 +24,8 @@ import EditPwd from "./components/Profile/EditPwd";
 import SelectedSupplier from "./components/Supplier/SelectedSupplier";
 import AddSupplier from "./components/Supplier/AddSupplier";
 import UsersList from "./components/Admin/UsersList";
+import AddRecipe from "./components/Home/AddRecipe";
+import SelectedRecipe from "./components/Home/SelectedRecipe";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -61,6 +63,22 @@ function App() {
                 element={
                   <PrivateRoute>
                     <Home />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/recipe/add"
+                element={
+                  <PrivateRoute>
+                    <AddRecipe />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/recipe/:id"
+                element={
+                  <PrivateRoute>
+                    <SelectedRecipe />
                   </PrivateRoute>
                 }
               />

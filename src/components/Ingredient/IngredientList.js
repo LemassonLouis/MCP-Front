@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:24:58
- * @modify date 2022-04-27 20:00:56
+ * @modify date 2022-05-07 15:27:07
  * @desc [description]
  */
 import React from 'react';
@@ -21,10 +21,6 @@ const IngredientList = ({searchTerm, moreFilter}) => {
     const [lottieState, setLottieState] = useState(false);
     const [ingredientsState, setIngredientsState] = useState([]);
 
-/**
- * TODO :
- * Attention il filtre aussi sur les falses !!!!
- */
 
     useEffect(() => {
         setLottieState(true);

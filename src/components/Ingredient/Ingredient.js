@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:24:52
- * @modify date 2022-04-27 17:59:29
+ * @modify date 2022-05-07 14:00:07
  * @desc [description]
  */
 import React from 'react';
@@ -37,26 +37,26 @@ const Ingredient = () => {
     return (
         <div>
             <Header/>
-            <br />
-            <br />
             <div className='webapp-layout'>
-                <Button variant="contained" onClick={() => navigate("/ingredient/add")} >Ajouter</Button>
-                <br/>
-                <br />
-                <div className='filter'>
-                    <TextField 
-                        className='search'
-                        id="outlined-basic" 
-                        label="Recherche" 
-                        variant="outlined" 
-                        type="text" 
-                        name="search" 
-                        size='small'
-                        onChange={((e) => {setSearchTerm(e.target.value)})}
-                        />
-                    <Button onClick={() => setShow(true)} variant="contained">
-                        <FilterListIcon />
-                         • {filtersLength}</Button>
+                <div className="webapp-layout_top--content">
+                    <p onClick={() => navigate("/ingredient/add")} >+ Ajouter un ingrédient</p>
+                </div>
+                <div className='webapp-layout_top--content'>
+                    <div className='filter'>
+                        <TextField 
+                            className='search'
+                            id="outlined-basic" 
+                            label="Recherche" 
+                            variant="outlined" 
+                            type="text" 
+                            name="search" 
+                            size='small'
+                            onChange={((e) => {setSearchTerm(e.target.value)})}
+                            />
+                        <Button onClick={() => setShow(true)} variant="contained">
+                            <FilterListIcon />
+                            • {filtersLength}</Button>
+                    </div>
                 </div>
                 <br/>
                 <IngredientList moreFilter={moreFilter} searchTerm={searchTerm}/>

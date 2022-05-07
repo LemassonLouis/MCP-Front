@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:25:03
- * @modify date 2022-04-27 19:00:09
+ * @modify date 2022-04-30 23:37:01
  * @desc [description]
  */
 import React, {useEffect, useState} from 'react';
@@ -10,10 +10,12 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import { removeIngredient } from '../../services/ingredientApiService';
 import ResponsiveHeader from '../Common/Header/ResponsiveHeader';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import LoadingButton from '@mui/lab/LoadingButton';
-import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
 import { editIngredient } from '../../services/ingredientApiService';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import FooterResponsiveBtn from '../Common/Footer/FooterResponsiveBtn';
 import '../Common/Footer/FooterResponsiveBtn.css'
 
 const SelectedIngredient = () => {
@@ -101,7 +103,31 @@ const SelectedIngredient = () => {
                     onInput={handleChange} />
                 <br />
                 <br />
-                <label>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      value="vege"
+                      color="primary"
+                      name="vege"
+                      defaultChecked={locationState.ING_vege}
+                      onChange={handleChange}
+                    />
+                  }
+                  label="Végétarien"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      value="allergen"
+                      color="primary"
+                      defaultChecked={locationState.ING_allergen}
+                      name="allergen"
+                      onChange={handleChange}
+                    />
+                  }
+                  label="Allergène"
+                />
+                {/* <label>
                     Végétarien 
                     <input type="checkbox" name='vege'
                         defaultChecked={locationState.ING_vege}
@@ -112,7 +138,7 @@ const SelectedIngredient = () => {
                     <input type="checkbox" name='allergen'
                         defaultChecked={locationState.ING_allergen}
                         onInput={handleChange} />
-                </label>
+                </label> */}
                 <br />
                 <br />
                 <LoadingButton loading={load} color="error" variant="contained" onClick={() => sendRemoveIngredient()}><DeleteOutlineOutlinedIcon/></LoadingButton>
