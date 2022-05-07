@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:23:40
- * @modify date 2022-04-25 20:23:43
+ * @modify date 2022-05-01 12:35:07
  * @desc [description]
  */
 import React from 'react';
@@ -17,6 +17,7 @@ const Header = () => {
 
     const navigate = useNavigate();
     const { currentUser } = useContext(UserContext);
+    console.log(currentUser);
 
     return (
         <div className='webapp-header webapp-header_desktop'>

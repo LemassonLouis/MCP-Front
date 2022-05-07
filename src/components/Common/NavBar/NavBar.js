@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:24:08
- * @modify date 2022-04-25 20:24:09
+ * @modify date 2022-05-07 13:45:49
  * @desc [description]
  */
 import React from "react";
@@ -43,15 +43,7 @@ const NavBar = () => {
       >
         Profil
       </NavLink>
-      <NavLink
-        /**
-         * Pass the id of the connected user
-         */
-        to="/categories"
-        className={({ isActive }) => (isActive ? "activeLink" : "")}
-      >
-        Catégorie
-      </NavLink>
+
     </nav>
   );
 };

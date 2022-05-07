@@ -2,11 +2,11 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:22:57
- * @modify date 2022-04-27 18:43:04
+ * @modify date 2022-05-01 00:10:44
  * @desc [description]
  */
 import React, {useState} from 'react';
-import {Modal, Box, Typography, Button} from '@mui/material';
+import {Modal, Box, Typography, Button, FormControlLabel, Checkbox} from '@mui/material';
 import './ModaleFilters.css';
 
 function ModalFilters({show, func, childToParentFiltersLength, childToParentMoreFilter}) {
@@ -65,21 +65,30 @@ function ModalFilters({show, func, childToParentFiltersLength, childToParentMore
                 <hr />
                 <br />
                 <div className='modalFilters-inputs'>
-                    <label>
-                        Végétarien 
-                        <input type="checkbox" name='vege'
-                            onChange={handleChange}
-                            defaultChecked={inputs.vege}
-                            />
-                    </label>
-                    
-                    <label>
-                        Allergène 
-                        <input type="checkbox" name='allergen'
-                            onChange={handleChange}
-                            defaultChecked={inputs.allergen}
-                            />
-                    </label>
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                        value="vege"
+                        color="primary"
+                        name="vege"
+                        defaultChecked={inputs.vege}
+                        onChange={handleChange}
+                        />
+                    }
+                    label="Végétarien"
+                    />
+                    <FormControlLabel
+                    control={
+                        <Checkbox
+                        value="allergen"
+                        color="primary"
+                        name="allergen"
+                        defaultChecked={inputs.allergen}
+                        onChange={handleChange}
+                        />
+                    }
+                    label="Allergène"
+                    />
                 </div>
                 <br />
                 <Button variant="contained" onClick={() => wrapperFunction()}>Filtrer • {filtersLength}</Button>

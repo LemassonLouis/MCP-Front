@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:24:30
- * @modify date 2022-04-30 20:29:21
+ * @modify date 2022-04-30 23:38:41
  * @desc [description]
  */
 
@@ -38,6 +38,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
+
 const AddIngredient = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
@@ -60,6 +61,8 @@ const AddIngredient = () => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
+  console.log(inputs);
+
   /**
    * Creation of an ingredient object to send to the back
    */
@@ -73,7 +76,7 @@ const AddIngredient = () => {
       vege: Boolean(inputs.vege),
       allergen: Boolean(inputs.allergen),
       archive: Boolean(inputs.archive),
-      season: inputs.season,
+      // season: inputs.season,
     };
     console.log(ingredient);
     postIngredient(ingredient)
@@ -157,6 +160,7 @@ const AddIngredient = () => {
                     <Checkbox
                       value="vege"
                       color="primary"
+                      name="vege"
                       onChange={handleChange}
                     />
                   }
@@ -169,6 +173,7 @@ const AddIngredient = () => {
                     <Checkbox
                       value="allergen"
                       color="primary"
+                      name="allergen"
                       onChange={handleChange}
                     />
                   }
@@ -181,6 +186,7 @@ const AddIngredient = () => {
                     <Checkbox
                       value="archive"
                       color="primary"
+                      name="archive"
                       onChange={handleChange}
                     />
                   }
