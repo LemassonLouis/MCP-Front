@@ -1,3 +1,10 @@
+/**
+ * @author Kevin Clément
+ * @email kevin-clement@live.fr
+ * @create date 2022-04-25 20:27:31
+ * @modify date 2022-04-25 20:27:34
+ * @desc [description]
+ */
 import axios from "axios";
 import getJWTHeader from "./token";
 
@@ -104,21 +111,13 @@ export function getAllUsers() {
     )
 }
 
-/**
- * in progress !!!
- */
-export function editUser(user, currentUser) {
+export function editUserPassword(pwd, currentUser) {
     console.log('editUser');
-    console.log(user);
+    console.log(pwd);
     console.log(mcpApiEndpoint + 'users');
     return new Promise(function (resolve, reject) {
-        const data = {
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-        };
         axios
-            .put(mcpApiEndpoint + 'users/' + currentUser?.id, data, {
+            .put(mcpApiEndpoint + 'users/' + currentUser?.id, pwd, {
                 headers: {
                     Accept: "application/json",
                     authorization: getJWTHeader(currentUser)

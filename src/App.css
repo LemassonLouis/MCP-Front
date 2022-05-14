@@ -11,6 +11,7 @@
   justify-content: center;
 }
 
+
 /**TEST**/
 .card {
   display: flex;
@@ -28,10 +29,9 @@
   margin: 5px;
 }
 
-.filter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.ingredient-lottie{
+  z-index: 99999;
+  position: absolute;
 }
 
 .onSort {
@@ -50,4 +50,31 @@
 .spanBtn{
   cursor: pointer;
   color: #F48625;
+}
+
+.webapp-layout_top--content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 6px;
+    z-index: 999;
+    box-shadow: 5px 6px 20px 5px rgb(0 0 0 / 8%);
+    padding: 16px;
+}
+
+.webapp-layout_top--content > p {
+  color: #F48625;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.filter {
+  width: 330px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }

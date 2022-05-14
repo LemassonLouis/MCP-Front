@@ -1,0 +1,9 @@
+.card_recipe--momentBadge{
+    position: absolute;
+    top: 5%;
+    left: 85%;
+    color: white;
+    background-color: #F7A154;
+    padding: 3px;
+    border-radius: 5px;
+}

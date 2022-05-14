@@ -1,33 +1,45 @@
+/**
+ * @author Kevin Clément
+ * @email kevin-clement@live.fr
+ * @create date 2022-04-25 20:24:58
+ * @modify date 2022-05-07 15:27:07
+ * @desc [description]
+ */
 import React from 'react';
 import {Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import {getAllIngredients} from '../../services/ingredientApiService';
+import Lottie from "lottie-react";
+import cookingLottie from "../../Utils/Lottie/cookingLottie.json";
 
-const IngredientList = ({searchTerm}) => {
+
+const IngredientList = ({searchTerm, moreFilter}) => {
 
     
     const navigate = useNavigate();
-
+    const [lottieState, setLottieState] = useState(false);
     const [ingredientsState, setIngredientsState] = useState([]);
 
+
     useEffect(() => {
-        getAllIngredients().then((res) => {
+        setLottieState(true);
+        getAllIngredients(moreFilter).then((res) => {
             if (res.status === 200) {
+                setLottieState(false);
                 setIngredientsState(res.data);
             }
         })
         .catch((err) => {
             console.log(err);
         });
-    }, []);
-
+    }, [moreFilter]);
 
     return (
         <>  
             <div className='card'>
+            {lottieState && <Lottie className='ingredient-lottie' animationData={cookingLottie}/>}
             {
-
                 /*******Search function************/
 
                 ingredientsState.filter((i) => {
@@ -36,7 +48,6 @@ const IngredientList = ({searchTerm}) => {
                     }else if(i.ING_name.toLowerCase().includes(searchTerm.toLowerCase())){
                         return i
                     }
-
                 /*************Render****************/
 
                 }).map((i) =>{

@@ -1,0 +1,13 @@
+.modalFilters-inputs{
+    display: flex;
+    justify-content: space-evenly;
+    width: 250px;
+    margin: auto;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+input[type=checkbox]{
+    margin-left: 5px;
+}
+
