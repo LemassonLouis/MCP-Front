@@ -43,12 +43,17 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
             if (image.URI != inputURI) {
 
                 if (image.URI != undefined) {
-                    deleteImage(image.id).then(req => console.log("image removed / req", req));
+                    deleteImage(image.id);
                 }
 
                 if (inputURI != defaultIMG) {
-                    postImage(inputURI).then(req => {
-                        console.log("image add / req", req);
+                    const inputImage = {
+                        URI: inputURI,
+                        created_by: currentUser.id,
+                        created_at: new Date().toISOString()
+                    }
+
+                    postImage(inputImage).then(req => {
                         return req.data.id;
                     });
                 }

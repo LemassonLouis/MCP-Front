@@ -43,6 +43,7 @@ const AddIngredient = () => {
         setLoad(true);
 
         const imageID = refCompImage.current.doChanges();
+        console.log(imageID);
 
         let ingredient = {
             name: inputs.name,
@@ -66,7 +67,7 @@ const AddIngredient = () => {
             <br />
             <br />
             <form onSubmit={e => sendIngredient(e)}>
-                <ChooseImage /*imgID="10"*/ ref={refCompImage} />
+                <ChooseImage /*imgID="8"*/ ref={refCompImage} />
                 <TextField
                     required
                     id="outlined-basic"

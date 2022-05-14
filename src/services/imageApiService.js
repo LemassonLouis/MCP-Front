@@ -4,7 +4,7 @@ const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
 
 /**
  * Get an image from the API.
- * @param {Number} imageID - Int who define the id of the image.
+ * @param {Int} imageID - Int who define the id of the image.
  * @returns {Promise} Promise.req
  */
 export function getImage(imageID) {
@@ -32,18 +32,23 @@ export function getImage(imageID) {
 
 /**
  * Post an image to the API.
- * @param {String} imageURL - String who define the URL of the image.
+ * @param {Object} image - Object Image who define the image.
+ * @param {String} image.URI - String who define the image uri.
+ * @param {Int} image.created_by - Int who define the image user id creator.
+ * @param {DateISOString} image.created_at - DateISOString who define the image date od creation.
  * @returns {Promise} Promise.req
  */
-export function postImage(imageURL) {
+export function postImage(image) {
 
   console.log("postImage()", mcpApiEndpoint + "images");
-  console.log("imageURL", imageURL);
+  console.log("image", image);
 
   return new Promise((resolve, reject) => {
 
     const data = {
-      iMGUri: imageURL
+      iMGUri: image.URI,
+      iMGCreatedBy: mcpApiEndpoint + "users/" + image.created_by,
+      iMGCreatedAt: image.created_at
     };
 
     axios
@@ -66,7 +71,7 @@ export function postImage(imageURL) {
 
 /**
  * Delete an image from the API.
- * @param {Number} imageID - Int who define the id of the image.
+ * @param {Int} imageID - Int who define the id of the image.
  * @returns {Promise} Promise.req
  */
 export function deleteImage(imageID) {
