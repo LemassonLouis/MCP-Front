@@ -38,12 +38,12 @@ const AddIngredient = () => {
     /**
      * Creation of an ingredient object to send to the back
      */
-    const sendIngredient = (e) => {
+    const sendIngredient = async (e) => {
         e.preventDefault();
         setLoad(true);
 
-        const imageID = refCompImage.current.doChanges();
-        console.log(imageID);
+        const imageID = await refCompImage.current.doChanges();
+        console.log("imageID", imageID);
 
         let ingredient = {
             name: inputs.name,

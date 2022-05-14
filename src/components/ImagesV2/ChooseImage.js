@@ -39,7 +39,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
      * Method of the component that can be accessible from the parent.
      */
     useImperativeHandle(ref, () => ({
-        doChanges() {
+        async doChanges() {
             if (image.URI != inputURI) {
 
                 if (image.URI != undefined) {
@@ -53,9 +53,8 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
                         created_at: new Date().toISOString()
                     }
 
-                    postImage(inputImage).then(req => {
-                        return req.data.id;
-                    });
+                    let result = await postImage(inputImage);
+                    return result.data.id;
                 }
             }
 
