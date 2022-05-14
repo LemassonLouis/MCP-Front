@@ -1,10 +1,11 @@
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState, useContext } from 'react';
 
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+import UserContext from '../../Contexts/UserContext';
 import { deleteImage, getImage, postImage } from '../../services/imageApiService';
 import './ChooseImage.css';
 
@@ -16,6 +17,7 @@ const Input = styled('input')({
 
 const ChooseImage = ({ imgID = undefined }, ref) => {
 
+    const { currentUser } = useContext(UserContext);
     const defaultIMG = "https://via.placeholder.com/500x500.png?text=NONE";
 
     const [image, setImage] = useState({ id: undefined, URI: undefined });
@@ -32,7 +34,6 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
                 });
         }
     }, []);
-
 
     /**
      * Method of the component that can be accessible from the parent.
