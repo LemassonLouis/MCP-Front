@@ -13,7 +13,7 @@
  * @desc [description]
  */
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import BasicDateRangePicker from "../BasicDateRangePicker/BasicDateRangePicker";
 import {
@@ -36,7 +36,6 @@ import ResponsiveHeader from "../Common/Header/ResponsiveHeader";
 import FooterResponsiveBtn from "../Common/Footer/FooterResponsiveBtn";
 import "../Common/Footer/FooterResponsiveBtn.css";
 import { postIngredient } from "../../services/ingredientApiService";
-import ModalListImage from "../Images/ModalListImages";
 import ChooseImage from '../ImagesV2/ChooseImage';
 import SelectCategory from "./SelectCategory";
 import { getAllCategories } from "../../services/CategoryService";
@@ -75,7 +74,7 @@ const AddIngredient = () => {
     /**
      * Creation of an ingredient object to send to the back
      */
-    const sendIngredient = (e) => {
+    const sendIngredient = async (e) => {
         e.preventDefault();
         setLoad(true);
 
@@ -124,10 +123,9 @@ const AddIngredient = () => {
                     }}
                 >
                     <Box component="form" onSubmit={(e) => sendIngredient(e)}>
-                        <ChooseImage /*imgID="8"*/ ref={refCompImage} />
                         <Grid container spacing={1}>
                             <Grid item xs={12} sm={6}>
-                                <ModalListImage />
+                                <ChooseImage /*imgID="8"*/ ref={refCompImage} />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
