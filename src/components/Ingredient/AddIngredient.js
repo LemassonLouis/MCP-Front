@@ -2,7 +2,7 @@
  * @author Genouel Vincent
  * @email genouel.vincent@gmail.com
  * @create date 2022-05-08 16:20:13
- * @modify date 2022-05-08 16:20:20
+ * @modify date 2022-05-08 22:31:17
  * @desc [description]
  */
 /**
@@ -67,8 +67,6 @@ const AddIngredient = () => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  console.log(inputs);
-
   /**
    * Creation of an ingredient object to send to the back
    */
@@ -92,7 +90,13 @@ const AddIngredient = () => {
 
   const initCategories = useCallback(async () => {
     const loadingCategories = await getAllCategories();
-    setCategoriesListState(loadingCategories.data);
+    const arrayObjectCategories = loadingCategories.data;
+    let arrayCategories = [];
+    arrayObjectCategories.forEach((element) => {
+      arrayCategories.push(element.name);
+    });
+    setCategoriesListState(arrayCategories);
+    console.log("arrayCategories : ", arrayCategories);
   }, []);
 
   const Demo = styled("div")(({ theme }) => ({
@@ -110,6 +114,7 @@ const AddIngredient = () => {
       <Container component="main" maxWidth="sm">
         <Box
           sx={{
+            m: 1,
             marginTop: 2,
             display: "flex",
             flexDirection: "column",
@@ -121,7 +126,7 @@ const AddIngredient = () => {
               <Grid item xs={12} sm={6}>
                 <ModalListImage />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} sx={{ m: 0 }}>
                 <TextField
                   margin="none"
                   required
@@ -201,19 +206,7 @@ const AddIngredient = () => {
               </Grid>
             </Grid>
 
-            {/* <label>
-                Végétarien :
-                <input type="checkbox" name="vege" onInput={handleChange} />
-                </label>
-                <label>
-                Allergène :
-                <input type="checkbox" name="allergen" onInput={handleChange} />
-                </label>
-                <label>
-                Archive :
-                <input type="checkbox" name="archive" onInput={handleChange} />
-              </label> */}
-            <Grid item xs={12} sx={{ m: 4 }}>
+            <Grid item xs={12} sx={{ m: 1 }}>
               <SelectCategory
                 props={categoriesListState}
                 name="categorySelect"
@@ -221,33 +214,11 @@ const AddIngredient = () => {
                 setCategorySelectedState={setCategorySelectedState}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-                Liste des catégories sélectionnées :
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sx={{ mx: 15 }}>
-              <Demo>
-                <List dense={dense}>
-                  {categorySelectedState.map((e) => (
-                    <ListItem>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <FolderIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText>{e}</ListItemText>
-                      <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItem>
-                  ))}
-                </List>
-              </Demo>
-            </Grid>
+
             <Grid item xs={12} sx={{ mt: 2, mb: 6 }}>
               <BasicDateRangePicker func={dateRangerPicker} />
             </Grid>
+
             <Grid item xs={12} sx={{ m: 2 }}>
               <LoadingButton
                 type="submit"
