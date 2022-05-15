@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:23:32
- * @modify date 2022-04-27 20:34:05
+ * @modify date 2022-05-15 01:43:59
  * @desc [description]
  */
 .webapp-header
@@ -13,7 +13,7 @@
     background-color: #fff;
     z-index: 999;
     box-shadow: 5px 6px 20px 5px rgb(0 0 0 / 8%);
-    padding: 1rem;
+    padding: 0 20px;
 }
 
 .webapp-header_desktop{
@@ -22,6 +22,9 @@
 
 .webapp-header > .webapp-header_logo{
     cursor: pointer;
+    padding-top: 10px;
+    width: 4rem;
+    height: 4rem;
 }
 
 .webapp-header > .webapp-header_backBtn
