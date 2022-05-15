@@ -2,22 +2,22 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-05-07 14:11:03
- * @modify date 2022-05-07 14:34:30
+ * @modify date 2022-05-08 13:12:11
  * @desc [description]
  */
 import axios from "axios";
 
 const TAG = "recipe";
 const RECIPES = process.env.REACT_APP_RECIPES;
-const isRecipe = "REC_isTechnic=false";
 
-export function getAllRecipes() {
+
+export function getAllRecipes(isTechnic) {
 console.log("getAll" + TAG);
 
-console.log(RECIPES + `?${isRecipe}`);
+console.log(RECIPES + `?REC_isTechnic=${isTechnic}`);
 return new Promise(function (resolve, reject) {
     axios
-    .get(RECIPES + `?${isRecipe}`, {
+    .get(RECIPES + `?REC_isTechnic=${isTechnic}`, {
         headers: {
         Accept: "application/json",
         },
