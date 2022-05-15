@@ -1,3 +1,11 @@
+/**
+ * @author Genouel Vincent
+ * @email genouel.vincent@gmail.com
+ * @create date 2022-05-08 16:19:17
+ * @modify date 2022-05-08 16:19:23
+ * @desc [description]
+ */
+
 import CategoryForm from "./CategoryForm";
 import { useCallback, useEffect, useState } from "react";
 import {
