@@ -26,6 +26,8 @@ import AddSupplier from "./components/Supplier/AddSupplier";
 import UsersList from "./components/Admin/UsersList";
 import AddRecipe from "./components/Home/AddRecipe";
 import SelectedRecipe from "./components/Home/SelectedRecipe";
+import Season from "./components/Season/Season";
+import AddSeason from "./components/Season/AddSeason";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -179,6 +181,23 @@ function App() {
                   </PrivateRoute>
                 }
               />
+              <Route
+                path="/seasons"
+                element={
+                  <PrivateRoute>
+                    <Season />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/seasons/add"
+                element={
+                  <PrivateRoute>
+                    <AddSeason />
+                  </PrivateRoute>
+                }
+              />
+
             </Routes>
           </div>
         </UserContext.Provider>
