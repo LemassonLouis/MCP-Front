@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:24:30
- * @modify date 2022-05-15 00:41:47
+ * @modify date 2022-05-15 14:14:37
  * @desc [description]
  */
 
@@ -86,7 +86,7 @@ const AddIngredient = () => {
     console.log(ingredient);
     postIngredient(ingredient)
       .then((res) => res.status === 201 && navigate(-1))
-      .catch((err) => console.log(err));
+      .catch(() => setLoad(false));
   };
 
   const initCategories = useCallback(async () => {

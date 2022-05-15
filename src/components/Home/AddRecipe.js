@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-05-07 15:12:05
- * @modify date 2022-05-15 01:22:30
+ * @modify date 2022-05-15 15:02:56
  * @desc [description]
  */
 import React, { useEffect, useState, useCallback } from "react";
@@ -34,6 +34,7 @@ import {
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import {getIngredients} from '../../services/ingredientApiService';
+import {postRecipe} from '../../services/recipeApiService';
 
 const AddRecipe = () => {
     const navigate = useNavigate();
@@ -52,13 +53,29 @@ const AddRecipe = () => {
         setInputs((values) => ({ ...values, [name]: value }));
     };
 
+    let sendCategories = categorySelectedState.map((e) => {
+        return `/api/categories/${e.id}`;
+        });
+
     const removeSelectedCategory = (c) => {
         setCategorySelectedState(categorySelectedState.filter((category) => category.id !== c.id));
     }
     
     const sendRecipe = (e) => {
         e.preventDefault();
-
+        setLoad(true);
+        let recipe = {
+            name: inputs.name,
+            comment: inputs.comment,
+            moment: Boolean(inputs.moment),
+            duration: inputs.duration,
+            isTechnic: false,
+            categories: sendCategories
+        }
+        console.log(recipe);
+        postRecipe(recipe)
+            .then((res) => res.status === 201 && navigate("/"))
+            .catch(() => setLoad(false));
     };
 
     const initCategories = useCallback(async () => {
@@ -190,32 +207,31 @@ const AddRecipe = () => {
                                 </List>}
                             </Demo>
                         </Grid>
+                        <div className="container-ingredient">
+                            <p className="add-ingredient" onClick={() => navigate("/ingredient/add")}>+ Ajouter un ingrédient</p>
+                            <SelectedIngredientsForRecipe ingredients={ingredientsState} ingredientsSelected={ingredientsSelectedState}
+                            setIngredientsSelected={setIngredientsSelectedState}/>
+                        </div>
+                        <AddStep/>
+                        <br />
+                        <br />
+                        <Box sx={{
+                            maxWidth: 300,
+                            margin: "auto",
+                        }}>
+                            <LoadingButton
+                                type="submit"
+                                loading={load}
+                                color="primary"
+                                variant="contained"
+                                fullWidth
+                            >
+                                Valider
+                            </LoadingButton>
+                        </Box>
                     </Box>
-
                 </Box>
             </Container>
-            <div className="container-ingredient">
-                <p className="add-ingredient" onClick={() => navigate("/ingredient/add")}>+ Ajouter un ingrédient</p>
-                <SelectedIngredientsForRecipe ingredients={ingredientsState} ingredientsSelected={ingredientsSelectedState}
-                setIngredientsSelected={setIngredientsSelectedState}/>
-            </div>
-            <AddStep/>
-            <br />
-            <br />
-            <Box sx={{
-                maxWidth: 300,
-                margin: "auto",
-            }}>
-                <LoadingButton
-                    type="submit"
-                    loading={load}
-                    color="primary"
-                    variant="contained"
-                    fullWidth
-                >
-                    Valider
-                </LoadingButton>
-            </Box>
             <br />
         </>
     );
