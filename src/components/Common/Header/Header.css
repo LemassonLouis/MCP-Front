@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:23:32
- * @modify date 2022-05-15 01:43:59
+ * @modify date 2022-05-15 02:25:00
  * @desc [description]
  */
 .webapp-header
@@ -14,6 +14,10 @@
     z-index: 999;
     box-shadow: 5px 6px 20px 5px rgb(0 0 0 / 8%);
     padding: 0 20px;
+}
+
+.webapp-responsiveHeader{
+    padding: 1rem;
 }
 
 .webapp-header_desktop{
