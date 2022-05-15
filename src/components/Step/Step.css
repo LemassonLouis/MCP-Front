@@ -1,0 +1,8 @@
+.add-step{
+    margin: 20px auto;
+    color: #F7A154;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    width: fit-content;
+}
