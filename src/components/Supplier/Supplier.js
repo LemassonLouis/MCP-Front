@@ -8,18 +8,12 @@
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
   CircularProgress,
-  IconButton,
   Typography,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useCallback, useEffect, useState } from "react";
-import {
-  getAllSuppliers,
-  deleteSupplier,
-} from "../../services/SupplierService";
+import { getAllSuppliers } from "../../services/SupplierService";
 import { useNavigate } from "react-router-dom";
 import ResponsiveHeader from "../Common/Header/ResponsiveHeader";
 
@@ -43,15 +37,6 @@ const Supplier = ({ onClick }) => {
     }
   }, []);
 
-  const deleteSupplierById = useCallback(
-    async (id) => {
-      console.log(id);
-      await deleteSupplier(id);
-      initSuppliers();
-    },
-    [initSuppliers]
-  );
-
   useEffect(() => {
     if (onClick) {
       initSuppliers();
@@ -67,49 +52,29 @@ const Supplier = ({ onClick }) => {
       </Button>
       <div className="card">
         {suppliersLoading && <CircularProgress />}
-        {suppliersState.map((e) => {
+        {suppliersState.map((s) => {
           return (
-            <>
-              <div className="uniqueCard" key={e.name}>
-                <Card sx={{ maxWidth: 350 }}>
-                  <CardContent>
-                    <Typography
-                      component="div"
-                      variant="h5"
-                      color="text.primary"
-                    >
-                      {e.SUP_name}
-                    </Typography>
-                    <Typography
-                      component="div"
-                      variant="h6"
-                      color="text.secondary"
-                    >
-                      {e.SUP_city}
-                    </Typography>
-                    <Typography
-                      component="div"
-                      variant="h6"
-                      color="text.secondary"
-                    >
-                      {e.SUP_zipCode}
-                    </Typography>
-                    <Typography
-                      component="div"
-                      variant="h6"
-                      color="text.secondary"
-                    >
-                      {e.SUP_phone}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <IconButton variant="center">
-                      <DeleteIcon onClick={() => deleteSupplierById(e.id)} />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </div>
-            </>
+            <Card
+              className="uniqueCardSuppliers"
+              key={s.id}
+              sx={{ width: 350 }}
+              onClick={() => navigate(`/suppliers/${s.id}`, { state: s })}
+            >
+              <CardContent>
+                <Typography component="div" variant="h5" color="text.primary">
+                  {s.name}
+                </Typography>
+                <Typography component="div" variant="h6" color="text.secondary">
+                  {s.zip}
+                </Typography>
+                <Typography component="div" variant="h6" color="text.secondary">
+                  {s.city}
+                </Typography>
+                <Typography component="div" variant="h6" color="text.secondary">
+                  {s.phone}
+                </Typography>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
