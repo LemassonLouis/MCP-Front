@@ -12,6 +12,7 @@ const SelectCategory = ({
       event.target.value,
     ]);
   };
+  console.log(props);
 
   return (
     <FormControl name={name} sx={{ m: 1, width: 300 }} value="value">
