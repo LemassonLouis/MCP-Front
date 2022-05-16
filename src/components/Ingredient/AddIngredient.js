@@ -1,4 +1,11 @@
 /**
+ * @author Genouel Vincent
+ * @email genouel.vincent@gmail.com
+ * @create date 2022-05-08 16:20:13
+ * @modify date 2022-05-08 22:31:17
+ * @desc [description]
+ */
+/**
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:24:30
@@ -36,7 +43,6 @@ import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-
 
 const AddIngredient = () => {
   const navigate = useNavigate();
@@ -91,7 +97,13 @@ const AddIngredient = () => {
 
   const initCategories = useCallback(async () => {
     const loadingCategories = await getAllCategories();
-    setCategoriesListState(loadingCategories.data);
+    const arrayObjectCategories = loadingCategories.data;
+    let arrayCategories = [];
+    arrayObjectCategories.forEach((element) => {
+      arrayCategories.push(element.name);
+    });
+    setCategoriesListState(arrayCategories);
+    console.log("arrayCategories : ", arrayCategories);
   }, []);
 
   const Demo = styled("div")(({ theme }) => ({
@@ -109,6 +121,7 @@ const AddIngredient = () => {
       <Container component="main" maxWidth="sm">
         <Box
           sx={{
+            m: 1,
             marginTop: 2,
             display: "flex",
             flexDirection: "column",
