@@ -5,10 +5,10 @@
  * @modify date 2022-05-15 15:02:56
  * @desc [description]
  */
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ResponsiveHeader from "../Common/Header/ResponsiveHeader";
-import ModalListImage from "../Images/ModalListImages";
+import ChooseImage from "../ImagesV2/ChooseImage";
 import SelectCategory from "../Ingredient/SelectCategory";
 import SelectedIngredientsForRecipe from "./SelectedIngredientsForRecipe";
 import AddStep from "../Step/AddStep";
@@ -33,8 +33,8 @@ import {
 } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import {getIngredients} from '../../services/ingredientApiService';
-import {postRecipe} from '../../services/recipeApiService';
+import { getIngredients } from '../../services/ingredientApiService';
+import { postRecipe } from '../../services/recipeApiService';
 
 const AddRecipe = () => {
     const navigate = useNavigate();
@@ -46,6 +46,8 @@ const AddRecipe = () => {
     const [categoriesListState, setCategoriesListState] = useState([]);
     const [dense, setDense] = React.useState(false);
 
+    const refCompImage = useRef();
+
     const handleChange = (e) => {
         const target = e.target;
         const value = target.type === "checkbox" ? target.checked : target.value;
@@ -55,12 +57,12 @@ const AddRecipe = () => {
 
     let sendCategories = categorySelectedState.map((e) => {
         return `/api/categories/${e.id}`;
-        });
+    });
 
     const removeSelectedCategory = (c) => {
         setCategorySelectedState(categorySelectedState.filter((category) => category.id !== c.id));
     }
-    
+
     const sendRecipe = (e) => {
         e.preventDefault();
         setLoad(true);
@@ -98,14 +100,14 @@ const AddRecipe = () => {
                 setIngredientsState(res.data);
             }
         })
-        .catch((err) => {
-            console.log(err);
-        });
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
-    
+
     return (
         <>
-        <ResponsiveHeader title="Ajouter une recette" />
+            <ResponsiveHeader title="Ajouter une recette" />
             <Container component="main" maxWidth="sm">
                 <Box
                     sx={{
@@ -116,7 +118,7 @@ const AddRecipe = () => {
                     <Box component="form" onSubmit={(e) => sendRecipe(e)}>
                         <Grid container spacing={1}>
                             <Grid item xs={12} sm={6}>
-                                <ModalListImage />
+                                <ChooseImage ref={refCompImage} />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -130,7 +132,7 @@ const AddRecipe = () => {
                                     sx={{ width: 200 }}
                                     onInput={handleChange}
                                 />
-                                
+
                                 <TextField
                                     margin="normal"
                                     id="outlined-multiline-static"
@@ -148,31 +150,31 @@ const AddRecipe = () => {
                             <Grid item xs>
                                 <br />
                                 <FormControlLabel
-                                control={
-                                    <Checkbox
-                                    value="moment"
-                                    color="primary"
-                                    name="moment"
-                                    onChange={handleChange}
-                                    />
-                                }
-                                label="À la carte"
+                                    control={
+                                        <Checkbox
+                                            value="moment"
+                                            color="primary"
+                                            name="moment"
+                                            onChange={handleChange}
+                                        />
+                                    }
+                                    label="À la carte"
                                 />
                             </Grid>
                             <Grid item xs>
-                            <TextField
-                                margin="normal"
-                                id="time"
-                                label="Temps de préparation"
-                                type="time"
-                                name="duration"
-                                defaultValue="00:00"
-                                onChange={handleChange}
-                                InputLabelProps={{
-                                shrink: true,
-                                }}
-                                sx={{ width: 150 }}
-                            />
+                                <TextField
+                                    margin="normal"
+                                    id="time"
+                                    label="Temps de préparation"
+                                    type="time"
+                                    name="duration"
+                                    defaultValue="00:00"
+                                    onChange={handleChange}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    sx={{ width: 150 }}
+                                />
                             </Grid>
                         </Grid>
                         <Grid item xs={12} sx={{ mt: 4, mb: 2 }}>
@@ -191,28 +193,28 @@ const AddRecipe = () => {
                         <Grid item xs={12} sx={{ mb: 2 }}>
                             <Demo>
                                 {<List dense={dense}>
-                                {categorySelectedState.map((c) => (
-                                    <ListItem key={c.id}>
-                                    <ListItemAvatar>
-                                        <Avatar>
-                                        <FolderIcon />
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText>{c.name}</ListItemText>
-                                    <IconButton edge="end" aria-label="delete">
-                                        <DeleteIcon onClick={() => removeSelectedCategory(c)}/>
-                                    </IconButton>
-                                    </ListItem>
-                                ))}
+                                    {categorySelectedState.map((c) => (
+                                        <ListItem key={c.id}>
+                                            <ListItemAvatar>
+                                                <Avatar>
+                                                    <FolderIcon />
+                                                </Avatar>
+                                            </ListItemAvatar>
+                                            <ListItemText>{c.name}</ListItemText>
+                                            <IconButton edge="end" aria-label="delete">
+                                                <DeleteIcon onClick={() => removeSelectedCategory(c)} />
+                                            </IconButton>
+                                        </ListItem>
+                                    ))}
                                 </List>}
                             </Demo>
                         </Grid>
                         <div className="container-ingredient">
                             <p className="add-ingredient" onClick={() => navigate("/ingredient/add")}>+ Ajouter un ingrédient</p>
                             <SelectedIngredientsForRecipe ingredients={ingredientsState} ingredientsSelected={ingredientsSelectedState}
-                            setIngredientsSelected={setIngredientsSelectedState}/>
+                                setIngredientsSelected={setIngredientsSelectedState} />
                         </div>
-                        <AddStep/>
+                        <AddStep />
                         <br />
                         <br />
                         <Box sx={{

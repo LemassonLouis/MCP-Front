@@ -2,97 +2,96 @@ import axios from "axios";
 
 const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
 
-export function getAllImages() {
+/**
+ * Get an image from the API.
+ * @param {Int} imageID - Int who define the id of the image.
+ * @returns {Promise} Promise.req
+ */
+export function getImage(imageID) {
 
-  console.log("getAllImages()", mcpApiEndpoint + "images");
+  console.log("getImage()", mcpApiEndpoint + "images" + "/" + imageID);
 
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     axios
-      .get(mcpApiEndpoint + "images", {
+      .get(mcpApiEndpoint + "images" + "/" + imageID, {
         headers: {
           Accept: "application/json",
         },
       })
-      .then(function (res) {
-        console.log("getAllImages() / res", res);
+      .then(res => {
+        console.log("getImage() / res", res);
         return resolve(res);
       })
-      .catch(function (err) {
-        console.log("getAllImages() / err", err);
+      .catch(err => {
+        console.log("getImage() / err", err);
         return reject(err);
       });
   });
 }
 
-// export function getImage(imageID) {
 
-//   console.log("getImage()", mcpApiEndpoint + "images" + imageID);
+/**
+ * Post an image to the API.
+ * @param {Object} image - Object Image who define the image.
+ * @param {String} image.URI - String who define the image uri.
+ * @param {Int} image.created_by - Int who define the image user id creator.
+ * @param {DateISOString} image.created_at - DateISOString who define the image date od creation.
+ * @returns {Promise} Promise.req
+ */
+export function postImage(image) {
 
-//   return new Promise(function (resolve, reject) {
-//     axios
-//       .get(mcpApiEndpoint + "images" + "/" + imageID, {
-//         headers: {
-//           Accept: "application/json",
-//         },
-//       })
-//       .then(function (res) {
-//         console.log("getImage() / res", res);
-//         return resolve(res);
-//       })
-//       .catch(function (err) {
-//         console.log("getImage() / err", err);
-//         return reject(err);
-//       });
-//   });
-// }
+  console.log("postImage()", mcpApiEndpoint + "images");
+  console.log("image", image);
 
-// export function postImage(image) {
+  return new Promise((resolve, reject) => {
 
-//   console.log("postImage()", mcpApiEndpoint + "images");
-//   console.log("image", image);
+    const data = {
+      iMGUri: image.URI,
+      iMGCreatedBy: mcpApiEndpoint + "users/" + image.created_by,
+      iMGCreatedAt: image.created_at
+    };
 
-//   return new Promise(function (resolve, reject) {
+    axios
+      .post(mcpApiEndpoint + "images", data, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then(res => {
+        console.log("postImage() / res", res);
+        return resolve(res);
+      })
+      .catch(err => {
+        console.log("postImage() / err", err);
+        return reject(err);
+      });
+  });
+}
 
-//     const data = {
-//       iMGName: image.name,
-//       iMGURL: image.url,
-//     };
 
-//     axios
-//       .post(mcpApiEndpoint + "images", data, {
-//         headers: {
-//           Accept: "application/json",
-//         },
-//       })
-//       .then(function (res) {
-//         console.log("postImage() / res", res);
-//         return resolve(res);
-//       })
-//       .catch(function (err) {
-//         console.log("postImage() / err", err);
-//         return reject(err);
-//       });
-//   });
-// }
+/**
+ * Delete an image from the API.
+ * @param {Int} imageID - Int who define the id of the image.
+ * @returns {Promise} Promise.req
+ */
+export function deleteImage(imageID) {
 
-// export function removeImage(imageID) {
+  console.log("deleteImage()", mcpApiEndpoint + "images" + "/" + imageID);
 
-//   console.log("removeImage()", mcpApiEndpoint + "images" + imageID);
-
-//   return new Promise(function (resolve, reject) {
-//     axios
-//       .delete(mcpApiEndpoint + "images" + "/" + imageID, {
-//         headers: {
-//           Accept: "application/json",
-//         },
-//       })
-//       .then(function (res) {
-//         console.log("removeImage() / res", res);
-//         return resolve(res);
-//       })
-//       .catch(function (err) {
-//         console.log("removeImage() / err", err);
-//         return reject(err);
-//       });
-//   });
-// }
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(mcpApiEndpoint + "images" + "/" + imageID, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then(res => {
+        console.log("deleteImage() / res", res);
+        return resolve(res);
+      })
+      .catch(err => {
+        console.log("deleteImage() / err", err);
+        return reject(err);
+      });
+  });
+}
