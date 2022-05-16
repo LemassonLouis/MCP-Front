@@ -8,10 +8,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ResponsiveHeader from "../Common/Header/ResponsiveHeader";
-import { createSupplier } from "../../services/SupplierService";
-import { TextField } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
-import FooterResponsiveBtn from "../Common/Footer/FooterResponsiveBtn";
 import "../Common/Footer/FooterResponsiveBtn.css";
 
 const AddTechnique = () => {

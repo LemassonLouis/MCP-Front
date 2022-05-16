@@ -7,6 +7,7 @@ import Profile from "./components/Profile/Profile";
 import NotFound from "./components/NotFound/NotFound";
 import Ingredient from "./components/Ingredient/Ingredient";
 import Technique from "./components/Technique/Technique";
+import AddTechnique from "./components/Technique/AddTechnique";
 import Supplier from "./components/Supplier/Supplier";
 import SelectedIngredient from "./components/Ingredient/SelectedIngredient";
 import AddIngredient from "./components/Ingredient/AddIngredient";
@@ -26,7 +27,6 @@ import AddSupplier from "./components/Supplier/AddSupplier";
 import UsersList from "./components/Admin/UsersList";
 import AddRecipe from "./components/Home/AddRecipe";
 import SelectedRecipe from "./components/Home/SelectedRecipe";
-import AddTechnique from "./components/Technique/AddTechnique";
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
@@ -149,6 +149,14 @@ function App() {
               />
               <Route
                 path="/technique/add"
+                element={
+                  <PrivateRoute>
+                    <AddTechnique />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/technique/:id"
                 element={
                   <PrivateRoute>
                     <AddTechnique />

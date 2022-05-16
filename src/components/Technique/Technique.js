@@ -5,115 +5,73 @@
  * @desc [description]
  */
 
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CircularProgress,
-  IconButton,
-  Typography,
-} from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../Common/Header/Header";
-import NavBar from "../Common/NavBar/NavBar";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useState, useEffect } from "react";
+import { getAllRecipes } from "../../services/recipeApiService";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CardActionArea,
+} from "@mui/material";
+import Lottie from "lottie-react";
+import cookingLottie from "../../Utils/Lottie/cookingLottie.json";
+import "./Technique.css";
+import ResponsiveHeader from "../Common/Header/ResponsiveHeader";
 
-const Technique = ({ onClick }) => {
-  const [techniquesState, setTechniquesState] = useState([]);
-  const [techniquesLoading, setTechniquesLoading] = useState(false);
-
+const Technique = () => {
   const navigate = useNavigate();
+  const [lottieState, setLottieState] = useState(false);
+  const [recipesState, setRecipesState] = useState([]);
 
-  // const initTechniques = useCallback(async () => {
-  //   try {
-  //     setTechniquesLoading(true);
-  //     const techniques = await getAllTechniques();
-  //     if (techniques.status === 200) {
-  //       console.log(techniques);
-  //       setTechniquesLoading(false);
-  //       setTechniquesState(techniques.data);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
-
-  // const deleteTechniqueById = useCallback(
-  //   async (id) => {
-  //     console.log(id);
-  //     await deleteTechnique(id);
-  //     initTechniques();
-  //   },
-  //   [initTechniques]
-  // );
-
-  // useEffect(() => {
-  //   if (onClick) {
-  //     initTechniques();
-  //   }
-  //   initTechniques();
-  // }, [initTechniques, onClick]);
+  useEffect(() => {
+    setLottieState(true);
+    getAllRecipes(true)
+      .then((res) => {
+        if (res.status === 200) {
+          setLottieState(false);
+          setRecipesState(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
-    <div>
-      <Header />
-      <br />
-      <Button variant="contained" onClick={() => navigate("/technique/add")}>
-        Ajouter
-      </Button>
+    <>
+      <ResponsiveHeader title={"Liste des techniques"} />
       <div className="card">
-        {techniquesLoading && <CircularProgress />}
-        {techniquesState.map((e) => {
+        {lottieState && (
+          <Lottie className="ingredient-lottie" animationData={cookingLottie} />
+        )}
+        {recipesState.map((r) => {
           return (
-            <>
-              <div className="uniqueCard" key={e.name}>
-                <Card sx={{ maxWidth: 350 }}>
-                  <CardContent>
-                    <Typography
-                      component="div"
-                      variant="h5"
-                      color="text.primary"
-                    >
-                      {e.SUP_name}
-                    </Typography>
-                    <Typography
-                      component="div"
-                      variant="h6"
-                      color="text.secondary"
-                    >
-                      {e.SUP_city}
-                    </Typography>
-                    <Typography
-                      component="div"
-                      variant="h6"
-                      color="text.secondary"
-                    >
-                      {e.SUP_zipCode}
-                    </Typography>
-                    <Typography
-                      component="div"
-                      variant="h6"
-                      color="text.secondary"
-                    >
-                      {e.SUP_phone}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <IconButton variant="center">
-                      <DeleteIcon /* onClick={() => deleteTechniqueById(e.id)} */
-                      />
-                    </IconButton>
-                  </CardActions>
-                </Card>
-              </div>
-            </>
+            <Card
+              onClick={() => navigate(`/technique/${r.id}`, { state: r })}
+              key={r.id}
+              sx={{ width: 250 }}
+            >
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image="https://media.istockphoto.com/photos/red-apple-fruit-with-green-leaf-isolated-on-white-picture-id925389178?k=20&m=925389178&s=612x612&w=0&h=6TUJn0mknsO7gPO0j_OKMBhs1ng0LbBKq5OiN_fhVBQ="
+                  alt=""
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="div">
+                    {r.name}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
           );
         })}
       </div>
-      <NavBar />
-    </div>
+    </>
   );
 };
 
