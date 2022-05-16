@@ -2,7 +2,7 @@
  * @author Genouel Vincent
  * @email genouel.vincent@gmail.com
  * @create date 2022-05-08 16:20:13
- * @modify date 2022-05-16 10:18:38
+ * @modify date 2022-05-16 10:23:18
  * @desc [description]
  */
 /**
@@ -99,6 +99,17 @@ const AddIngredient = () => {
     const loadingCategories = await getAllCategories();
     setCategoriesListState(loadingCategories.data);
   }, []);
+
+  // const initCategories = useCallback(async () => {
+  //   const loadingCategories = await getAllCategories();
+  //   const arrayObjectCategories = loadingCategories.data;
+  //   let arrayCategories = [];
+  //   arrayObjectCategories.forEach((element) => {
+  //     arrayCategories.push(element.name);
+  //   });
+  //   setCategoriesListState(arrayCategories);
+  //   console.log("arrayCategories : ", arrayCategories);
+  // }, []);
 
 
   const Demo = styled("div")(({ theme }) => ({
