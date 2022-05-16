@@ -62,22 +62,33 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
         }
     }));
 
+    const handleInputChange = event => {
+        const [file] = event.target.files;  // Get the files from the image input
+        if (file) {
+            setInputURI(URL.createObjectURL(file));
+        }
+    }
+
 
     return (
-        <div className='ChooseImage'>
-            <div className='ChooseImage-button' style={{
-                backgroundImage: `url(${inputURI})`
-            }}>
+        <div id="ChooseImage-Container" className='ChooseImage'>
+            <div
+                id="ChooseImage-Button"
+                className='ChooseImage-button'
+                style={{
+                    backgroundImage: `url(${inputURI})`
+                }}
+            >
                 <label>
                     <Input
+                        id="ChooseImage-Input"
                         accept="image/*"
                         type="file"
-                        onChange={(event) => { setInputURI(event.target.value) }}
-                    // error : "Not allowed to load local resource: file:///C:/%C3%BAkepath%0Brigitte_by_liang_xing_40x30.jpg"
-                    // just need to check my notification from https://stackoverflow.com/questions/71770607/react-not-allowed-to-load-local-resource
+                        onChange={handleInputChange}
                     />
                     <Typography
                         component="div"
+                        id="ChooseImage-Text"
                         className="ChooseImage-button-hover"
                     >
                         Choisir une image
@@ -86,6 +97,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
             </div>
             {inputURI != defaultIMG ?
                 <IconButton
+                    id="ChooseImage-Delete"
                     aria-label="delete"
                     onClick={() => { setInputURI(defaultIMG) }}
                 >
