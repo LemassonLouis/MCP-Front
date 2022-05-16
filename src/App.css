@@ -29,6 +29,15 @@
   margin: 5px;
 }
 
+.uniqueCardSuppliers {
+  cursor: pointer;
+}
+
+.uniqueCardSuppliers:hover {
+  background: rgba(240, 240, 240, 0.781);
+  transition: 0.250s ease-in-out;
+}
+
 .ingredient-lottie{
   z-index: 99999;
   position: absolute;

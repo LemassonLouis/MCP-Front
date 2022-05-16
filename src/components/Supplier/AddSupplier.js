@@ -30,12 +30,12 @@ const AddSupplier = () => {
     e.preventDefault();
     setLoad(true);
     let supplier = {
-      sUPName: inputs.name,
-      sUPAddress: inputs.address,
-      sUP_zipCode: inputs.zipCode,
-      sUPCity: inputs.city,
-      sUPPhone: inputs.phone,
-      sUPMail: inputs.mail
+      name: inputs.name,
+      address: inputs.address,
+      zip: inputs.zip,
+      city: inputs.city,
+      phone: inputs.phone,
+      mail: inputs.mail
     };
     console.log(supplier);
     createSupplier(supplier)
@@ -75,7 +75,7 @@ const AddSupplier = () => {
           label="Code postal"
           variant="outlined"
           type="text"
-          name="zipCode"
+          name="zip"
           onInput={handleChange}
         />
         <br />
