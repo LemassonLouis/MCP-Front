@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:25:03
- * @modify date 2022-04-30 23:37:01
+ * @modify date 2022-05-14 12:39:49
  * @desc [description]
  */
 import React, {useEffect, useState} from 'react';
@@ -29,11 +29,8 @@ const SelectedIngredient = () => {
      */
     const location = useLocation();
     const locationState = location.state;
+    console.log(locationState);
     
-    /**
-     * TODO :
-     * For the moment you have to trigger the inputs to have a data change otherwise you send null or undefined
-     */
     const handleChange = (e) => {
         const target = e.target;
         const value = target.type === "checkbox" ? target.checked : target.value;
@@ -127,18 +124,6 @@ const SelectedIngredient = () => {
                   }
                   label="Allergène"
                 />
-                {/* <label>
-                    Végétarien 
-                    <input type="checkbox" name='vege'
-                        defaultChecked={locationState.ING_vege}
-                        onInput={handleChange} />
-                </label>
-                <label>
-                    Allergène 
-                    <input type="checkbox" name='allergen'
-                        defaultChecked={locationState.ING_allergen}
-                        onInput={handleChange} />
-                </label> */}
                 <br />
                 <br />
                 <LoadingButton loading={load} color="error" variant="contained" onClick={() => sendRemoveIngredient()}><DeleteOutlineOutlinedIcon/></LoadingButton>

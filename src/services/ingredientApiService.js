@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:26:29
- * @modify date 2022-04-26 21:34:00
+ * @modify date 2022-05-14 16:04:27
  * @desc [description]
  */
 import axios from "axios";
@@ -33,6 +33,28 @@ export function getAllIngredients({vege, allergen}) {
   });
 }
 
+export function getIngredients() {
+  console.log("getAll" + TAG);
+
+  console.log(INGREDIENTS)
+  return new Promise(function (resolve, reject) {
+    axios
+      .get(INGREDIENTS, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then(function (res) {
+        console.log("getAll"+ TAG, res);
+        return resolve(res);
+      })
+      .catch(function (err) {
+        console.log("getAll" + TAG, err);
+        return reject(err);
+      });
+  });
+}
+
 export function postIngredient(ingredient) {
   console.log(ingredient);
   console.log("post" + TAG);
@@ -45,8 +67,9 @@ export function postIngredient(ingredient) {
       iNGUnit: ingredient.unit,
       iNGPrice: ingredient.price,
       iNGIsArchive: ingredient.archive,
-      // "seasons": ingredient.season
+      categories: ingredient.categories,
     };
+    console.log(data);
     axios
       .post(INGREDIENTS, data, {
         headers: {

@@ -2,7 +2,7 @@
  * @author Kevin Clément
  * @email kevin-clement@live.fr
  * @create date 2022-04-25 20:24:30
- * @modify date 2022-04-30 23:38:41
+ * @modify date 2022-05-15 14:14:37
  * @desc [description]
  */
 
@@ -26,7 +26,6 @@ import {
 import LoadingButton from "@mui/lab/LoadingButton";
 
 import ResponsiveHeader from "../Common/Header/ResponsiveHeader";
-import FooterResponsiveBtn from "../Common/Footer/FooterResponsiveBtn";
 import "../Common/Footer/FooterResponsiveBtn.css";
 import { postIngredient } from "../../services/ingredientApiService";
 import ModalListImage from "../Images/ModalListImages";
@@ -61,7 +60,13 @@ const AddIngredient = () => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  console.log(inputs);
+  let sendCategories = categorySelectedState.map((e) => {
+    return `/api/categories/${e.id}`;
+    });
+
+  const removeSelectedCategory = (c) => {
+    setCategorySelectedState(categorySelectedState.filter((category) => category.id !== c.id));
+  }
 
   /**
    * Creation of an ingredient object to send to the back
@@ -76,12 +81,12 @@ const AddIngredient = () => {
       vege: Boolean(inputs.vege),
       allergen: Boolean(inputs.allergen),
       archive: Boolean(inputs.archive),
-      // season: inputs.season,
+      categories: sendCategories
     };
     console.log(ingredient);
     postIngredient(ingredient)
-      .then((res) => res.status === 201 && navigate("/ingredient"))
-      .catch((err) => console.log(err));
+      .then((res) => res.status === 201 && navigate(-1))
+      .catch(() => setLoad(false));
   };
 
   const initCategories = useCallback(async () => {
@@ -194,20 +199,7 @@ const AddIngredient = () => {
                 />
               </Grid>
             </Grid>
-
-            {/* <label>
-                Végétarien :
-                <input type="checkbox" name="vege" onInput={handleChange} />
-                </label>
-                <label>
-                Allergène :
-                <input type="checkbox" name="allergen" onInput={handleChange} />
-                </label>
-                <label>
-                Archive :
-                <input type="checkbox" name="archive" onInput={handleChange} />
-              </label> */}
-            <Grid item xs={12} sx={{ m: 4 }}>
+            <Grid item xs={12} sx={{ mt: 4, mb: 2 }}>
               <SelectCategory
                 props={categoriesListState}
                 name="categorySelect"
@@ -215,28 +207,28 @@ const AddIngredient = () => {
                 setCategorySelectedState={setCategorySelectedState}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            {categorySelectedState.length > 0 && <Grid item xs={12}>
+              <Typography sx={{ mb: 2 }} variant="h6" component="div">
                 Liste des catégories sélectionnées :
               </Typography>
-            </Grid>
-            <Grid item xs={12} sx={{ mx: 15 }}>
+            </Grid>}
+            <Grid item xs={12} sx={{ mb: 2 }}>
               <Demo>
-                <List dense={dense}>
-                  {categorySelectedState.map((e) => (
+                {<List dense={dense}>
+                  {categorySelectedState.map((c) => (
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar>
                           <FolderIcon />
                         </Avatar>
                       </ListItemAvatar>
-                      <ListItemText>{e}</ListItemText>
+                      <ListItemText>{c.name}</ListItemText>
                       <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
+                        <DeleteIcon onClick={() => removeSelectedCategory(c)}/>
                       </IconButton>
                     </ListItem>
                   ))}
-                </List>
+                </List>}
               </Demo>
             </Grid>
             <Grid item xs={12} sx={{ mt: 2, mb: 6 }}>

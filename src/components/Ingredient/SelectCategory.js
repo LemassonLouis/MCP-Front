@@ -24,7 +24,7 @@ const SelectCategory = ({
         defaultValue=""
       >
         {props.map((e) => (
-          <MenuItem key={e.id} value={e.name}>
+          <MenuItem key={e.id} value={e}>
             {e.name}
           </MenuItem>
         ))}
