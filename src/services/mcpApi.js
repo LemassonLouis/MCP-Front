@@ -1,3 +1,11 @@
+/**
+ * @author Genouel Vincent
+ * @email genouel.vincent@gmail.com
+ * @create date 2022-05-08 16:22:07
+ * @modify date 2022-05-08 16:22:09
+ * @desc [description]
+ */
+
 import axios from "axios";
 
 const mcpApiEndpoint = process.env.REACT_APP_ENDPOINT;
