@@ -7,6 +7,7 @@ import Profile from "./components/Profile/Profile";
 import NotFound from "./components/NotFound/NotFound";
 import Ingredient from "./components/Ingredient/Ingredient";
 import Technique from "./components/Technique/Technique";
+import AddTechnique from "./components/Technique/AddTechnique";
 import Supplier from "./components/Supplier/Supplier";
 import SelectedIngredient from "./components/Ingredient/SelectedIngredient";
 import AddIngredient from "./components/Ingredient/AddIngredient";
@@ -146,7 +147,22 @@ function App() {
                   </PrivateRoute>
                 }
               />
-
+              <Route
+                path="/technique/add"
+                element={
+                  <PrivateRoute>
+                    <AddTechnique />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/technique/:id"
+                element={
+                  <PrivateRoute>
+                    <AddTechnique />
+                  </PrivateRoute>
+                }
+              />
               <Route
                 path="/categories"
                 element={
