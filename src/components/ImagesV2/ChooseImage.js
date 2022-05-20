@@ -20,10 +20,10 @@ const Input = styled('input')({
 const ChooseImage = ({ imgID = undefined }, ref) => {
 
     const { currentUser } = useContext(UserContext);
-    const defaultIMG = "https://via.placeholder.com/500x500.png?text=NONE";
+    const defaultIMG = process.env.REACT_APP_RESSOURCES_IMAGES + "DefaultImage.png";
 
     const [image, setImage] = useState({ id: undefined, URI: undefined });
-    const [inputURI, setInputURI] = useState(defaultIMG);
+    const [input, setInput] = useState({ URI: defaultIMG, file: undefined });
 
     useEffect(() => {
         if (imgID != undefined && imgID != null) {
@@ -31,7 +31,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
                 .then(res => {
                     if (res.status === 200) {
                         setImage({ id: res.data.id, URI: res.data.IMG_uri });
-                        setInputURI(res.data.IMG_uri);
+                        setInput({ URI: res.data.IMG_uri });
                     }
                 });
         }
@@ -42,20 +42,19 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
      */
     useImperativeHandle(ref, () => ({
         async doChanges() {
-            if (image.URI != inputURI) {
+            if (image.URI != input.URI) {
 
                 if (image.URI != undefined) {
                     deleteImage(image.id);
                 }
 
-                if (inputURI != defaultIMG) {
-                    const inputImage = {
-                        URI: inputURI,
-                        created_by: currentUser.id,
-                        created_at: new Date().toISOString()
+                if (input.URI != defaultIMG) {
+                    const imageData = {
+                        file: input.file,
+                        userID: currentUser.id
                     }
 
-                    let result = await postImage(inputImage);
+                    let result = await postImage(imageData);
                     return result.data.id;
                 }
             }
@@ -67,7 +66,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
     const handleInputChange = event => {
         const [file] = event.target.files;  // Get the files from the image input
         if (file) {
-            setInputURI(URL.createObjectURL(file));
+            setInput({ URI: URL.createObjectURL(file), file: file })
         }
     }
 
@@ -78,7 +77,7 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
                 id="ChooseImage-Button"
                 className='ChooseImage-button'
                 style={{
-                    backgroundImage: `url(${inputURI})`
+                    backgroundImage: `url(${input.URI})`
                 }}
             >
                 <label>
@@ -97,11 +96,11 @@ const ChooseImage = ({ imgID = undefined }, ref) => {
                     </Typography>
                 </label>
             </div>
-            {inputURI != defaultIMG ?
+            {input.URI != defaultIMG ?
                 <IconButton
                     id="ChooseImage-Delete"
                     aria-label="delete"
-                    onClick={() => { setInputURI(defaultIMG) }}
+                    onClick={() => { setInput({ URI: defaultIMG, file: undefined }) }}
                 >
                     <DeleteIcon />
                 </IconButton>
