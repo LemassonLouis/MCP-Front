@@ -24,11 +24,11 @@ const SelectCategory = ({
         // displayEmpty
         defaultValue=""
       >
-        {props.map((e) => (
+        {props ? props.map((e) => (
           <MenuItem key={e.id} value={e}>
             {e.name}
           </MenuItem>
-        ))}
+        )) : console.log("aucunes categories détécté")}
       </Select>
     </FormControl>
   );
